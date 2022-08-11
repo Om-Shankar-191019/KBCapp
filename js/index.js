@@ -49,6 +49,7 @@ let currentQuestIndex = 0;
 let prevQuestIndex;
 let currSetTimeoutId ;
 
+
 const stopWatch = ()=>{
     tikTikSound();
 }
@@ -70,6 +71,40 @@ const tikTikText = ()=>{
     }
 }
 
+const optButtonDisabled = ()=>{
+    document.querySelectorAll(".answer-opt").forEach((e)=>{
+        e.classList.add("pointer-events-none");
+    })
+}
+
+//Result Analysis--------
+const resultAnalysis = (e)=>{
+    contestantAnsObject = e.childNodes;
+    contestantAns = contestantAnsObject[1].nodeValue;
+    correctAns = kbcQuestions[currentQuestIndex][0].correct;
+    if(contestantAns == correctAns)
+    {
+        document.getElementById("result").innerText = "you won";
+    }
+    else
+    {
+        document.getElementById("result").innerText = "wrong ANSWER";
+    }
+}
+
+// on click any option by the player----------
+const optionFun = ()=>{
+    document.querySelectorAll(".answer-opt").forEach((e)=>{
+        // e.addEventListener("click",pickAnyOption(e));
+        e.addEventListener("click",()=>{
+            e.style.backgroundColor = "gold";
+            e.style.color = "black";
+            clearStopWatch();
+            optButtonDisabled();
+            resultAnalysis(e);
+        })
+    })
+}
 
 const buildKBCquestions = ()=>{
     const kbcQuestionsContent = `
@@ -80,7 +115,7 @@ const buildKBCquestions = ()=>{
             <div class="question">${kbcQuestions[currentQuestIndex][0].question}</div>
         </div>
         <div class="answer-box">
-            <div class="answer-opt"><span>A)</span>${kbcQuestions[currentQuestIndex][0].a}</div>
+            <div id="a" class="answer-opt"><span>A)</span>${kbcQuestions[currentQuestIndex][0].a}</div>
             <div class="answer-opt"><span>B)</span>${kbcQuestions[currentQuestIndex][0].b}</div>
             <div class="answer-opt"><span>C)</span>${kbcQuestions[currentQuestIndex][0].c}</div>
             <div class="answer-opt"><span>D)</span>${kbcQuestions[currentQuestIndex][0].d}</div>
@@ -88,6 +123,13 @@ const buildKBCquestions = ()=>{
     `;
 
     document.querySelector(".game-area-ques-ans").innerHTML = kbcQuestionsContent;
+    optionFun();
+}
+
+
+const clearStopWatch = ()=>{
+    clearTimeout(currSetTimeoutId);
+    timerSound.pause();
 }
 
 const nextButtonFun = ()=>{
@@ -95,13 +137,48 @@ const nextButtonFun = ()=>{
     {
         currentQuestIndex++;
         buildKBCquestions();
-        clearTimeout(currSetTimeoutId);
+        buildMoneyArea();
+        questForSpecificPrizeMoney();
+        clearStopWatch();
         stopWatch();
     }
 }
 
+const buildMoneyArea = ()=>{
+    let moneyAreaPrizes = `
+            <div id="0" class="each-prize">1000</div>
+            <div id="1" class="each-prize">2000</div>
+            <div id="2" class="each-prize">3000</div>
+            <div id="3" class="each-prize">5000</div>
+            <div id="4" class="each-prize">10,000</div>
+            <div id="5" class="each-prize">20,000</div>
+            <div id="6" class="each-prize">40,000</div>
+            <div id="7" class="each-prize">80,000</div>
+            <div id="8" class="each-prize">1,60,000</div>
+            <div id="9" class="each-prize">3,20,000</div>
+            <div id="10" class="each-prize">6,40,000</div>
+            <div id="11" class="each-prize">12,50,000</div>
+            <div id="12" class="each-prize">25,00,000</div>
+            <div id="13" class="each-prize">50,00,000</div>
+            <div id="14" class="each-prize">1 Crore</div>
+    `;
+    document.querySelector("#money-area").classList.add("money-area");
+    document.querySelector("#money-area").innerHTML = moneyAreaPrizes;
+    let prizeId = `${currentQuestIndex}`;
+    document.getElementById(prizeId).style.backgroundColor = "blueviolet";
+    document.getElementById(prizeId).style.borderRadius = "5px";
+}
+
+const questForSpecificPrizeMoney = ()=>{
+    let prizeId = `${currentQuestIndex}`;
+    let prizeValue = document.getElementById(prizeId).innerText ;
+    document.getElementById("result").innerText = `Question for ${prizeValue}`;
+}
+
 document.querySelector(".lets-play-container").addEventListener("click",()=>{
     buildKBCquestions();
+    buildMoneyArea();
+    questForSpecificPrizeMoney();
     welcomeSound.pause();
     stopWatch();
     document.querySelector("#Next").addEventListener("click",nextButtonFun);
@@ -171,3 +248,5 @@ const transitionEndListener = (element)=>{
         buttonDeselect(element);
     })
 }
+
+

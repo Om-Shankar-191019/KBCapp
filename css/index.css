@@ -293,6 +293,7 @@ a{
 
 .answer-opt{
     /* border:1px solid red; */
+    /* background-color: red; */
     width:49%;
     height:46px;
     margin:0.3 0;
@@ -336,6 +337,10 @@ a{
     display:flex;
     justify-content: center;
     align-items:center;
+}
+
+.pointer-events-none{
+    pointer-events: none;
 }
 /* -------------------media query--------------- */
 
