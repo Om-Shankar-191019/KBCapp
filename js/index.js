@@ -43,6 +43,65 @@ const kbcQuestions =
 ];
 const page1Sound = new Audio("./sounds/Kaun_Banega_Crorepati_Bgm.mp3");
 const welcomeSound = new Audio("./sounds/kbc_background.mp3")
+const timerSound = new Audio("./sounds/Kbc Timer - Tik Tik KBC Clock.mp3");
+
+let currentQuestIndex = 0;
+let prevQuestIndex;
+
+const stopWatch = ()=>{
+    tikTikSound();
+}
+const tikTikSound = ()=>{
+    document.querySelector(".timer").innerText = 30;
+    timerSound.currentTime=0;
+    timerSound.play();
+    tikTikText();
+}
+
+const tikTikText = ()=>{
+    let innerTextValue = document.querySelector(".timer").innerText;
+    if(innerTextValue>0)
+    {
+        innerTextValue--;
+        document.querySelector(".timer").innerText = innerTextValue;
+        setTimeout(tikTikText,1000);
+    }
+}
+
+
+const buildKBCquestions = ()=>{
+    const kbcQuestionsContent = `
+        <div class="timer-container">
+            <div class="timer">30</div>
+        </div>
+        <div class="question-box">
+            <div class="question">${kbcQuestions[currentQuestIndex][0].question}</div>
+        </div>
+        <div class="answer-box">
+            <div class="answer-opt"><span>A)</span>${kbcQuestions[currentQuestIndex][0].a}</div>
+            <div class="answer-opt"><span>B)</span>${kbcQuestions[currentQuestIndex][0].b}</div>
+            <div class="answer-opt"><span>C)</span>${kbcQuestions[currentQuestIndex][0].c}</div>
+            <div class="answer-opt"><span>D)</span>${kbcQuestions[currentQuestIndex][0].d}</div>
+        </div>
+    `;
+
+    document.querySelector(".game-area-ques-ans").innerHTML = kbcQuestionsContent;
+}
+
+document.querySelector(".lets-play-container").addEventListener("click",()=>{
+    buildKBCquestions();
+    welcomeSound.pause();
+    stopWatch();
+})
+
+document.querySelector("#Next").addEventListener("click",()=>{
+    if(currentQuestIndex < kbcQuestions.length-1)
+    {
+        currentQuestIndex++;
+        buildKBCquestions();
+    }
+})
+
 
 const openingSound = ()=>{
     page1Sound.currentTime = 0;
@@ -53,10 +112,6 @@ const WelcomeSound = ()=>{
     welcomeSound.currentTime = 0;
     welcomeSound.play();
 }
-
-// let contestantName;
-
-
 
 // adding modal on clicking sitHotSeat button
 const sitOnTheHotSeatFun = ()=>{
