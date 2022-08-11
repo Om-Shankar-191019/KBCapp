@@ -47,6 +47,7 @@ const timerSound = new Audio("./sounds/Kbc Timer - Tik Tik KBC Clock.mp3");
 
 let currentQuestIndex = 0;
 let prevQuestIndex;
+let currSetTimeoutId ;
 
 const stopWatch = ()=>{
     tikTikSound();
@@ -64,7 +65,8 @@ const tikTikText = ()=>{
     {
         innerTextValue--;
         document.querySelector(".timer").innerText = innerTextValue;
-        setTimeout(tikTikText,1000);
+        clearTimeout(currSetTimeoutId);
+        currSetTimeoutId = setTimeout(tikTikText,1000);
     }
 }
 
@@ -72,7 +74,7 @@ const tikTikText = ()=>{
 const buildKBCquestions = ()=>{
     const kbcQuestionsContent = `
         <div class="timer-container">
-            <div class="timer">30</div>
+            <div class="timer">0</div>
         </div>
         <div class="question-box">
             <div class="question">${kbcQuestions[currentQuestIndex][0].question}</div>
@@ -88,19 +90,27 @@ const buildKBCquestions = ()=>{
     document.querySelector(".game-area-ques-ans").innerHTML = kbcQuestionsContent;
 }
 
-document.querySelector(".lets-play-container").addEventListener("click",()=>{
-    buildKBCquestions();
-    welcomeSound.pause();
-    stopWatch();
-})
-
-document.querySelector("#Next").addEventListener("click",()=>{
+const nextButtonFun = ()=>{
     if(currentQuestIndex < kbcQuestions.length-1)
     {
         currentQuestIndex++;
         buildKBCquestions();
+        clearTimeout(currSetTimeoutId);
+        stopWatch();
     }
+}
+
+document.querySelector(".lets-play-container").addEventListener("click",()=>{
+    buildKBCquestions();
+    welcomeSound.pause();
+    stopWatch();
+    document.querySelector("#Next").addEventListener("click",nextButtonFun);
 })
+
+document.querySelector("#Quit").addEventListener("click",()=>{
+    document.querySelector(".timer").innerText = 0;
+});
+
 
 
 const openingSound = ()=>{
