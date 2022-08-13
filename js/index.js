@@ -77,6 +77,15 @@ const optButtonDisabled = ()=>{
     })
 }
 
+const correctOptionAnsEle = ()=>{
+    obj = kbcQuestions[currentQuestIndex][0];
+    for(let items in obj)
+    {
+        if(obj[items] == correctAns)
+            return items;
+    }
+}
+
 //Result Analysis--------
 const resultAnalysis = (e)=>{
     contestantAnsObject = e.childNodes;
@@ -84,11 +93,16 @@ const resultAnalysis = (e)=>{
     correctAns = kbcQuestions[currentQuestIndex][0].correct;
     if(contestantAns == correctAns)
     {
-        document.getElementById("result").innerText = "you won";
+        document.getElementById("result").innerText = "Correct Answer";
+        e.style.backgroundColor = "greenyellow";
     }
     else
     {
-        document.getElementById("result").innerText = "wrong ANSWER";
+        document.getElementById("result").innerText = "Wrong Answer";
+        e.style.backgroundColor = "lightcoral";
+        correctOptionId = correctOptionAnsEle();
+        document.getElementById(correctOptionId).style.backgroundColor = "greenyellow";
+        document.getElementById(correctOptionId).style.color = "black";
     }
 }
 
@@ -159,9 +173,9 @@ const buildKBCquestions = ()=>{
         </div>
         <div class="answer-box">
             <div id="a" class="answer-opt"><span>A)</span>${kbcQuestions[currentQuestIndex][0].a}</div>
-            <div class="answer-opt"><span>B)</span>${kbcQuestions[currentQuestIndex][0].b}</div>
-            <div class="answer-opt"><span>C)</span>${kbcQuestions[currentQuestIndex][0].c}</div>
-            <div class="answer-opt"><span>D)</span>${kbcQuestions[currentQuestIndex][0].d}</div>
+            <div id="b" class="answer-opt"><span>B)</span>${kbcQuestions[currentQuestIndex][0].b}</div>
+            <div id="c" class="answer-opt"><span>C)</span>${kbcQuestions[currentQuestIndex][0].c}</div>
+            <div id="d" class="answer-opt"><span>D)</span>${kbcQuestions[currentQuestIndex][0].d}</div>
         </div>
     `;
 
@@ -314,5 +328,4 @@ const transitionEndListener = (element)=>{
         buttonDeselect(element);
     })
 }
-
 
