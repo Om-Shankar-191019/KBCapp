@@ -92,6 +92,48 @@ const resultAnalysis = (e)=>{
     }
 }
 
+const disableNextButton = ()=>{
+    document.getElementById("Next").classList.add("pointer-events-none");
+}
+
+const enableNextButton = ()=>{
+    document.getElementById("Next").classList.remove("pointer-events-none");
+}
+
+const bulletTimeout = (flag,bullets,clearTimeoutId,e)=>{
+    if(flag==3)
+        {
+            document.querySelector("#game-area-result").classList.remove("checking-bullets-container");
+            let resultBack = `<div id="result" class="result">Welcome to Kaun Banega Crorepati</div>`;
+            document.getElementById("game-area-result").innerHTML = resultBack;
+            resultAnalysis(e);
+            enableNextButton();
+        }
+    else
+      {
+          let ele = document.querySelector(".checking-bullets-container");
+          ele.innerHTML = bullets;
+          ele.children[flag].style.backgroundColor = "gold";
+          clearTimeout(clearTimeoutId);
+          flag++;
+          clearTimeoutId = setTimeout(bulletTimeout,800,flag,bullets,clearTimeoutId,e);
+      }
+
+    }
+
+const bulletsRunning = (e)=>{
+    document.querySelector("#game-area-result").classList.add("checking-bullets-container");
+    let bullets = `
+      <div class="bullets"></div>
+      <div class="bullets"></div>
+      <div class="bullets"></div>
+    `
+    disableNextButton();
+    let clearTimeoutId;
+    let flag=0;
+    bulletTimeout(flag,bullets,clearTimeoutId,e);
+}
+
 // on click any option by the player----------
 const optionFun = ()=>{
     document.querySelectorAll(".answer-opt").forEach((e)=>{
@@ -101,7 +143,8 @@ const optionFun = ()=>{
             e.style.color = "black";
             clearStopWatch();
             optButtonDisabled();
-            resultAnalysis(e);
+            // resultAnalysis(e);
+            bulletsRunning(e);
         })
     })
 }
@@ -200,6 +243,29 @@ const WelcomeSound = ()=>{
     welcomeSound.play();
 }
 
+// just to show the money stack before the game begins..
+const showMoneyStack = ()=>{
+    let moneyAreaPrizes = `
+            <div id="0" class="each-prize">1000</div>
+            <div id="1" class="each-prize">2000</div>
+            <div id="2" class="each-prize">3000</div>
+            <div id="3" class="each-prize">5000</div>
+            <div id="4" class="each-prize">10,000</div>
+            <div id="5" class="each-prize">20,000</div>
+            <div id="6" class="each-prize">40,000</div>
+            <div id="7" class="each-prize">80,000</div>
+            <div id="8" class="each-prize">1,60,000</div>
+            <div id="9" class="each-prize">3,20,000</div>
+            <div id="10" class="each-prize">6,40,000</div>
+            <div id="11" class="each-prize">12,50,000</div>
+            <div id="12" class="each-prize">25,00,000</div>
+            <div id="13" class="each-prize">50,00,000</div>
+            <div id="14" class="each-prize">1 Crore</div>
+    `;
+    document.querySelector("#money-area").classList.add("money-area");
+    document.querySelector("#money-area").innerHTML = moneyAreaPrizes;
+}
+
 // adding modal on clicking sitHotSeat button
 const sitOnTheHotSeatFun = ()=>{
     let contestantName = document.getElementById("contestant-name-input").value;
@@ -209,7 +275,7 @@ const sitOnTheHotSeatFun = ()=>{
     WelcomeSound();
     document.getElementById("page2").classList.add("show-modal");
     document.getElementById("contestant-name").innerText = contestantName;
-    
+    showMoneyStack();
 }
 document.getElementById("sitOnTheHotSeat").addEventListener("click",sitOnTheHotSeatFun);
 
