@@ -42,8 +42,11 @@ const kbcQuestions =
         }]
 ];
 const page1Sound = new Audio("./sounds/Kaun_Banega_Crorepati_Bgm.mp3");
-const welcomeSound = new Audio("./sounds/kbc_background.mp3")
+const welcomeSound = new Audio("./sounds/page2_kbc_intro_audio.mp3")
 const timerSound = new Audio("./sounds/Kbc Timer - Tik Tik KBC Clock.mp3");
+const wrongAnswerSound = new Audio("./sounds/wrong_with_dramatic.mp3");
+const correctAnswerSound = new Audio("./sounds/kbc_background.mp3");
+const answerLockSound = new Audio("./sounds/ans_lock2.mp3");
 
 let currentQuestIndex = 0;
 let prevQuestIndex;
@@ -86,18 +89,31 @@ const correctOptionAnsEle = ()=>{
     }
 }
 
+const CorrectAnswerSound = ()=>{
+    correctAnswerSound.currentTime = 0;
+    correctAnswerSound.play();
+}
+
+const WrongAnswerSound = ()=>{
+    wrongAnswerSound.currentTime = 0;
+    wrongAnswerSound.play();
+}
+
 //Result Analysis--------
 const resultAnalysis = (e)=>{
+    answerLockSound.pause();
     contestantAnsObject = e.childNodes;
     contestantAns = contestantAnsObject[1].nodeValue;
     correctAns = kbcQuestions[currentQuestIndex][0].correct;
     if(contestantAns == correctAns)
     {
+        CorrectAnswerSound();
         document.getElementById("result").innerText = "Correct Answer";
         e.style.backgroundColor = "greenyellow";
     }
     else
     {
+        WrongAnswerSound();
         document.getElementById("result").innerText = "Wrong Answer";
         e.style.backgroundColor = "lightcoral";
         correctOptionId = correctOptionAnsEle();
@@ -148,16 +164,21 @@ const bulletsRunning = (e)=>{
     bulletTimeout(flag,bullets,clearTimeoutId,e);
 }
 
+const AnswerLockSound = ()=>{
+    answerLockSound.currentTime = 0;
+    answerLockSound.play();
+}
+
 // on click any option by the player----------
 const optionFun = ()=>{
     document.querySelectorAll(".answer-opt").forEach((e)=>{
         // e.addEventListener("click",pickAnyOption(e));
         e.addEventListener("click",()=>{
+            AnswerLockSound();
             e.style.backgroundColor = "gold";
             e.style.color = "black";
             clearStopWatch();
             optButtonDisabled();
-            // resultAnalysis(e);
             bulletsRunning(e);
         })
     })
@@ -198,6 +219,8 @@ const nextButtonFun = ()=>{
         questForSpecificPrizeMoney();
         clearStopWatch();
         stopWatch();
+        correctAnswerSound.pause();
+        wrongAnswerSound.pause();
     }
 }
 
