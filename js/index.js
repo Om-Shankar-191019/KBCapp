@@ -39,6 +39,14 @@ const kbcQuestions =
             c:"40",
             d:"41",
             correct:"38",
+        }],
+        [{
+            question:"In which year India got independence?",
+            a:"1945",
+            b:"1947",
+            c:"1948",
+            d:"1951",
+            correct:"1947",
         }]
 ];
 const page1Sound = new Audio("./sounds/Kaun_Banega_Crorepati_Bgm.mp3");
@@ -47,6 +55,8 @@ const timerSound = new Audio("./sounds/Kbc Timer - Tik Tik KBC Clock.mp3");
 const wrongAnswerSound = new Audio("./sounds/wrong_with_dramatic.mp3");
 const correctAnswerSound = new Audio("./sounds/kbc_background.mp3");
 const answerLockSound = new Audio("./sounds/ans_lock2.mp3");
+const lifelineComesUpSound = new Audio("./sounds/lifeline-comesUp.mp3");
+const audiencePollSound = new Audio("./sounds/audience_poll.mp3");
 
 let currentQuestIndex = 0;
 let prevQuestIndex;
@@ -74,13 +84,24 @@ const tikTikText = ()=>{
     }
 }
 
+const clearStopWatch = ()=>{
+    clearTimeout(currSetTimeoutId);
+    timerSound.pause();
+}
+
 const optButtonDisabled = ()=>{
     document.querySelectorAll(".answer-opt").forEach((e)=>{
         e.classList.add("pointer-events-none");
     })
 }
 
-const correctOptionAnsEle = ()=>{
+const optButtonEnabled = ()=>{
+    document.querySelectorAll(".answer-opt").forEach((e)=>{
+        e.classList.remove("pointer-events-none");
+    })
+}
+
+const correctOptionAnsEle = (correctAns)=>{
     obj = kbcQuestions[currentQuestIndex][0];
     for(let items in obj)
     {
@@ -116,7 +137,7 @@ const resultAnalysis = (e)=>{
         WrongAnswerSound();
         document.getElementById("result").innerText = "Wrong Answer";
         e.style.backgroundColor = "lightcoral";
-        correctOptionId = correctOptionAnsEle();
+        correctOptionId = correctOptionAnsEle(correctAns);
         document.getElementById(correctOptionId).style.backgroundColor = "greenyellow";
         document.getElementById(correctOptionId).style.color = "black";
     }
@@ -135,7 +156,16 @@ const bulletTimeout = (flag,bullets,clearTimeoutId,e)=>{
         {
             document.querySelector("#game-area-result").classList.remove("checking-bullets-container");
             let resultBack = `<div id="result" class="result">Welcome to Kaun Banega Crorepati</div>`;
-            document.getElementById("game-area-result").innerHTML = resultBack;
+            let lifelineBox = `
+                <div class="lifeline-box">
+                    <div class="lifeline-item audience-poll"></div>
+                    <div class="lifeline-item flip-the-question"></div>
+                    <div class="lifeline-item fifty-fifty"></div>
+                    <div class="lifeline-item double-dip"></div>
+                </div>
+            `;
+            let gameAreaFullItem = resultBack + lifelineBox;
+            document.getElementById("game-area-result").innerHTML = gameAreaFullItem;
             resultAnalysis(e);
             enableNextButton();
         }
@@ -169,6 +199,10 @@ const AnswerLockSound = ()=>{
     answerLockSound.play();
 }
 
+const clearScreenFromAudiencePoll = ()=>{
+    document.querySelector(".audience-poll-outer-container").innerHTML = "";
+}
+
 // on click any option by the player----------
 const optionFun = ()=>{
     document.querySelectorAll(".answer-opt").forEach((e)=>{
@@ -180,8 +214,149 @@ const optionFun = ()=>{
             clearStopWatch();
             optButtonDisabled();
             bulletsRunning(e);
+            clearScreenFromAudiencePoll();
         })
     })
+}
+
+
+//Life-line.............
+// audience-poll---------------
+
+
+const audiencePollLogic = ()=>{
+    let ans = getRandom(40,100);
+    let one = getRandom(0,100-ans);
+    let two = getRandom(0,100-ans-one);
+    let three = 100-(ans+one+two);
+
+    // let correctAns = kbcQuestions[currentQuestIndex][0].correct;
+    correctOptionId = "c";//correctOptionAnsEle(correctAns);
+    
+    let audienceOpt = ["a","b","c","d"];
+    let audienceScore = [ans,one,two,three];
+
+    for(let i=0;i<audienceOpt.length;i++)
+    {
+        if(audienceOpt[i]==correctOptionId)
+        {
+            let temp = audienceOpt[0];
+            audienceOpt[0] = correctOptionId;
+            audienceOpt[i] = temp;
+            break;
+        }
+    }
+    
+    for(let i=0;i<audienceOpt.length;i++)
+    {
+        let percentageId = `percentage_${audienceOpt[i]}`;
+        let barId = `bar_${audienceOpt[i]}`;
+        document.getElementById(percentageId).innerText = audienceScore[i]+"%";
+        document.getElementById(barId).style.height = audienceScore[i]+"%";
+    }    
+}
+
+const audiencePollTimeout = (flag,justBeforeAudiencePoll,clearTimeoutId)=>{
+    if(flag==8)
+        {
+            let audiencePollInnerContainer = `
+                <div class="audience-poll-inner-container">
+                    <div class="audience-percentage-box">
+                        <div id="percentage_a" class="percentage">34%</div>
+                        <div id="percentage_b" class="percentage">32%</div>
+                        <div id="percentage_c" class="percentage">10%</div>
+                        <div id="percentage_d" class="percentage">18%</div>
+                    </div>
+                    <div class="audience-bar-box">
+                        <div id="bar_a" class="bar"></div>
+                        <div id="bar_b" class="bar"></div>
+                        <div id="bar_c" class="bar"></div>
+                        <div id="bar_d" class="bar"></div>
+                    </div>
+                    <div class="audience-letter-box">
+                        <div class="letter">A</div>
+                        <div class="letter">B</div>
+                        <div class="letter">C</div>
+                        <div class="letter">D</div>
+                    </div>
+
+                </div>
+            `;
+            document.querySelector(".audience-poll-outer-container").innerHTML = audiencePollInnerContainer;
+            audiencePollLogic();
+            enableLifelineButton();
+            optButtonEnabled();
+        }
+    else
+      {
+        let tempFlag = flag;
+        if(tempFlag>3)
+            tempFlag = flag-4;
+        let ele = document.querySelector(".audience-poll-outer-container");
+        ele.innerHTML = justBeforeAudiencePoll;
+        ele.children[0].children[tempFlag].style.backgroundColor = "aqua";
+        clearTimeout(clearTimeoutId);
+        flag++;
+        clearTimeoutId = setTimeout(audiencePollTimeout,1000,flag,justBeforeAudiencePoll,clearTimeoutId);
+      }
+
+}
+
+const AudiencePollSound = ()=>{
+    audiencePollSound.currentTime = 0;
+    audiencePollSound.play();
+}
+
+const audiencePoll = ()=>{
+    document.querySelector(".audience-poll").addEventListener("click",()=>{
+        document.querySelector(".lifeline-box").classList.remove("show-lifeline");
+        document.getElementById("result").innerText = "Implementing Audience Poll ...";
+        document.querySelector(".audience-poll").classList.add("pointer-events-none");
+        lifelineNum = document.querySelector(".lifeline-no").innerText ;
+        lifelineNum--;
+        document.querySelector(".lifeline-no").innerText = lifelineNum;
+        setTimeout(()=>{
+            let justBeforeAudiencePoll = `
+                <div class="audience-bar-box just-before-audience-poll">
+                    <div id="bar_a" class="bar"></div>
+                    <div id="bar_b" class="bar"></div>
+                    <div id="bar_c" class="bar"></div>
+                    <div id="bar_d" class="bar"></div>
+                </div>
+            `;
+            document.getElementById("result").innerText = "";
+            AudiencePollSound();
+            let clearTimeoutId;
+            audiencePollTimeout(0,justBeforeAudiencePoll,clearTimeoutId);
+        },1500);
+    })
+}
+
+const disableLifelineButton = ()=>{
+    document.getElementById("lifeline-button").classList.add("pointer-events-none");
+}
+
+const enableLifelineButton = ()=>{
+    document.getElementById("lifeline-button").classList.remove("pointer-events-none");
+}
+
+const lifelineApplied = ()=>{
+    let lifelineNum = document.querySelector(".lifeline-no").innerText;
+    if(lifelineNum>0)
+    {
+        document.getElementById("lifeline-button").addEventListener("click",()=>{
+            clearScreenFromAudiencePoll();
+            clearStopWatch();
+            optButtonDisabled();
+            disableNextButton();
+            disableLifelineButton();
+        })
+    }
+    else
+    {
+        disableLifelineButton();
+        document.getElementById("result").innerText = "You have NO lifeline left !!";
+    }
 }
 
 const buildKBCquestions = ()=>{
@@ -202,13 +377,11 @@ const buildKBCquestions = ()=>{
 
     document.querySelector(".game-area-ques-ans").innerHTML = kbcQuestionsContent;
     optionFun();
+    lifelineApplied();
+    audiencePoll();
+    
 }
 
-
-const clearStopWatch = ()=>{
-    clearTimeout(currSetTimeoutId);
-    timerSound.pause();
-}
 
 const nextButtonFun = ()=>{
     if(currentQuestIndex < kbcQuestions.length-1)
@@ -255,13 +428,14 @@ const questForSpecificPrizeMoney = ()=>{
     document.getElementById("result").innerText = `Question for ${prizeValue}`;
 }
 
-document.querySelector(".lets-play-container").addEventListener("click",()=>{
+document.querySelector(".lets-play-image").addEventListener("click",()=>{
     buildKBCquestions();
     buildMoneyArea();
     questForSpecificPrizeMoney();
     welcomeSound.pause();
     stopWatch();
     document.querySelector("#Next").addEventListener("click",nextButtonFun);
+    document.querySelector(".lifeline-box").classList.remove("show-lifeline");
 })
 
 document.querySelector("#Quit").addEventListener("click",()=>{
@@ -303,6 +477,29 @@ const showMoneyStack = ()=>{
     document.querySelector("#money-area").innerHTML = moneyAreaPrizes;
 }
 
+const hoverLifeline = ()=>{
+    let beforeInnerText = document.getElementById("result").innerText;
+    document.querySelectorAll(".lifeline-item").forEach((ele)=>{
+        ele.addEventListener("mouseover",()=>{
+            document.getElementById("result").innerText = ele.classList[1];
+        })
+    })
+}
+
+const LifelineComesUpSound = ()=>{
+    lifelineComesUpSound.currentTime = 0;
+    lifelineComesUpSound.play();
+}
+
+const showLifeline = ()=>{
+    document.querySelector("#lifeline-button").addEventListener("click",()=>{
+        document.querySelector(".lifeline-box").classList.toggle("show-lifeline");
+        hoverLifeline();
+        LifelineComesUpSound();
+        
+    })
+}
+
 // adding modal on clicking sitHotSeat button
 const sitOnTheHotSeatFun = ()=>{
     let contestantName = document.getElementById("contestant-name-input").value;
@@ -313,6 +510,7 @@ const sitOnTheHotSeatFun = ()=>{
     document.getElementById("page2").classList.add("show-modal");
     document.getElementById("contestant-name").innerText = contestantName;
     showMoneyStack();
+    showLifeline();
 }
 document.getElementById("sitOnTheHotSeat").addEventListener("click",sitOnTheHotSeatFun);
 
@@ -352,3 +550,8 @@ const transitionEndListener = (element)=>{
     })
 }
 
+
+function getRandom(first,last){
+    var r = Math.random()*(last+1-first);
+    return(Math.floor(r)+first)
+}
