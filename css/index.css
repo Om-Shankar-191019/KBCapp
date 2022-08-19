@@ -11,52 +11,6 @@
 }
 
 
-.audience-poll-inner-container,.just-before-audience-poll{
-    border:1px solid yellow;
-    height:9rem;
-    width:10rem;
-    border-radius: 5px;
-    position:absolute;
-    top:10%;
-    left:50%;
-    transform: translate(-100%,-20%);
-}
-
-.audience-bar-box,.audience-letter-box,.audience-percentage-box{
-    /* border:1px solid orange; */
-    height:6rem;
-    width:10rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: flex-end;
-    background:transparent;
-}
-.bar{
-    width:1.6rem;
-    height:90%;
-    background-color:goldenrod;
-    box-shadow: 3px 0px 1px gold;
-    border-radius: 5px;
-    margin:0 3px;
-}
-.audience-letter-box,.audience-percentage-box{
-    height:1.5rem;
-    font-weight: bold;
-    align-items: flex-start;
-}
-.letter,.percentage{
-    width:1.6rem;
-    text-align: center;
-    color:white;
-}
-.percentage{
-    font-weight: lighter;
-}
-
-
-
-
 /* -------------------page1 ----------------------- */
 .container{
     height:100vh;
@@ -441,6 +395,9 @@ a{
     cursor:pointer;
     transition:all 0.2s ease;
     margin:0.4rem 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
   }
 
   .show-lifeline{
@@ -468,6 +425,74 @@ a{
   .double-dip{
     background-image:url("../images/doubleDip.jpeg");
   }
+
+  
+.audience-poll-inner-container,.just-before-audience-poll{
+    border:1px solid yellow;
+    height:9rem;
+    width:10rem;
+    border-radius: 5px;
+    position:absolute;
+    top:10%;
+    left:50%;
+    transform: translate(-100%,-20%);
+}
+
+.audience-bar-box,.audience-letter-box,.audience-percentage-box{
+    /* border:1px solid orange; */
+    height:6rem;
+    width:10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    background:transparent;
+}
+.bar{
+    width:1.6rem;
+    height:90%;
+    background-color:goldenrod;
+    box-shadow: 3px 0px 1px gold;
+    border-radius: 5px;
+    margin:0 3px;
+}
+.audience-letter-box,.audience-percentage-box{
+    height:1.5rem;
+    font-weight: bold;
+    align-items: flex-start;
+}
+.letter,.percentage{
+    width:1.6rem;
+    text-align: center;
+    color:white;
+}
+.percentage{
+    font-weight: lighter;
+}
+
+.cross-mark{
+    height:0.2rem;
+    width:2.6rem;
+    background-color:red;
+    border-radius:20%;
+    border:0.01rem solid white;
+    opacity:0;
+}
+
+.cross-one{
+    transform: rotate(150deg);
+}
+  
+.cross-two{
+    position:fixed;
+    transform: rotate(30deg);
+}
+
+.opacity-one{
+    opacity:1;
+}
+  
+
 /* -------------------media query--------------- */
 
 @media screen and (max-width:480px){
