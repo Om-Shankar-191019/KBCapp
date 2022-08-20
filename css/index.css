@@ -350,10 +350,6 @@ a{
     align-items:center;
 }
 
-.pointer-events-none{
-    pointer-events: none;
-}
-
 .checking-bullets-container , .lifeline-box{
     display:flex;
     justify-content:center;
@@ -491,7 +487,16 @@ a{
 .opacity-one{
     opacity:1;
 }
-  
+
+.pointer-events-NO{
+    pointer-events: none;
+}
+
+
+.pointer-events-none{
+    pointer-events: none;
+}
+
 
 /* -------------------media query--------------- */
 

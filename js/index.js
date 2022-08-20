@@ -7,6 +7,14 @@ const kbcQuestions =
             c:"Narendra Modi",
             d:"Shushil Modi",
             correct:"Narendra Modi",
+        },
+        {
+            question:"How many days are there in a week?",
+            a:"5",
+            b:"4",
+            c:"8",
+            d:"7",
+            correct:"7",
         }],
         [{
             question:"Who is the governor of bihar?",
@@ -69,6 +77,54 @@ let lifelineFlag = {
     doubleDipFlag : 1,
 }
 
+
+const disableNextButton = ()=>{
+    ele = document.getElementById("Next");
+    if(ele.classList.contains("pointer-events-none")==false)
+        document.getElementById("Next").classList.add("pointer-events-none");
+}
+
+const enableNextButton = ()=>{
+    document.getElementById("Next").classList.remove("pointer-events-none");
+}
+
+
+const disableQuitButton = ()=>{
+    ele = document.getElementById("Quit");
+    if(ele.classList.contains("pointer-events-none")==false)
+        document.getElementById("Quit").classList.add("pointer-events-none");
+}
+
+const enableQuitButton = ()=>{
+    document.getElementById("Quit").classList.remove("pointer-events-none");
+}
+
+const optButtonDisabled = ()=>{
+    document.querySelectorAll(".answer-opt").forEach((e)=>{
+        e.classList.add("pointer-events-none");
+    })
+}
+
+const optButtonEnabled = ()=>{
+    document.querySelectorAll(".answer-opt").forEach((e)=>{
+        e.classList.remove("pointer-events-none");
+    })
+}
+
+const TimeUpSound = ()=>{
+    wrongAnswerSound.currentTime=3.6;
+    wrongAnswerSound.play();
+}
+
+const timeUp = ()=>{
+    TimeUpSound();
+    document.getElementById("result").innerText = "#Time Up";
+    disableLifelineButton();
+    disableQuitButton();
+    optButtonDisabled();
+    setTimeout(openQuitPage,8000);
+}
+
 const stopWatch = ()=>{
     tikTikSound();
 }
@@ -88,23 +144,15 @@ const tikTikText = ()=>{
         clearTimeout(currSetTimeoutId);
         currSetTimeoutId = setTimeout(tikTikText,1000);
     }
+    else
+    {
+        timeUp();
+    }
 }
 
 const clearStopWatch = ()=>{
     clearTimeout(currSetTimeoutId);
     timerSound.pause();
-}
-
-const optButtonDisabled = ()=>{
-    document.querySelectorAll(".answer-opt").forEach((e)=>{
-        e.classList.add("pointer-events-none");
-    })
-}
-
-const optButtonEnabled = ()=>{
-    document.querySelectorAll(".answer-opt").forEach((e)=>{
-        e.classList.remove("pointer-events-none");
-    })
 }
 
 const correctOptionAnsEle = (correctAns)=>{
@@ -126,6 +174,12 @@ const WrongAnswerSound = ()=>{
     wrongAnswerSound.play();
 }
 
+function openQuitPage(){
+    quitContent = `  Quit the show `;
+    clearScreenFromAudiencePoll(); 
+    document.querySelector(".game-area").innerHTML = quitContent;
+}
+
 //Result Analysis--------
 const resultAnalysis = (e)=>{
     answerLockSound.pause();
@@ -137,6 +191,8 @@ const resultAnalysis = (e)=>{
         CorrectAnswerSound();
         document.getElementById("result").innerText = "Correct Answer";
         e.style.backgroundColor = "greenyellow";
+        enableNextButton();
+        enableQuitButton();
     }
     else
     {
@@ -146,15 +202,8 @@ const resultAnalysis = (e)=>{
         correctOptionId = correctOptionAnsEle(correctAns);
         document.getElementById(correctOptionId).style.backgroundColor = "greenyellow";
         document.getElementById(correctOptionId).style.color = "black";
+        setTimeout(openQuitPage,12000);
     }
-}
-
-const disableNextButton = ()=>{
-    document.getElementById("Next").classList.add("pointer-events-none");
-}
-
-const enableNextButton = ()=>{
-    document.getElementById("Next").classList.remove("pointer-events-none");
 }
 
 const bulletTimeout = (flag,bullets,clearTimeoutId,e)=>{
@@ -168,18 +217,24 @@ const bulletTimeout = (flag,bullets,clearTimeoutId,e)=>{
                         <div id="audience-cross-one" class="cross-mark cross-one "></div>
                         <div id="audience-cross-two"  class="cross-mark cross-two "></div>
                     </div>
-                    <div class="lifeline-item flip-the-question"></div>
+                    <div class="lifeline-item flip-the-question">
+                        <div class="cross-mark cross-one "></div>
+                        <div class="cross-mark cross-two "></div>
+                    </div>
                     <div class="lifeline-item fifty-fifty">
                         <div class="cross-mark cross-one "></div>
                         <div class="cross-mark cross-two "></div>
                     </div>
-                    <div class="lifeline-item double-dip"></div>
+                    <div class="lifeline-item double-dip">
+                        <div class="cross-mark cross-one "></div>
+                        <div class="cross-mark cross-two "></div>
+                    </div>
                 </div>
             `;
             let gameAreaFullItem = resultBack + lifelineBox;
             document.getElementById("game-area-result").innerHTML = gameAreaFullItem;
             resultAnalysis(e);
-            enableNextButton();
+            // enableNextButton();
         }
     else
       {
@@ -201,6 +256,7 @@ const bulletsRunning = (e)=>{
       <div class="bullets"></div>
     `
     disableNextButton();
+    disableQuitButton();
     let clearTimeoutId;
     let flag=0;
     bulletTimeout(flag,bullets,clearTimeoutId,e);
@@ -211,7 +267,7 @@ const AnswerLockSound = ()=>{
     answerLockSound.play();
 }
 
-const clearScreenFromAudiencePoll = ()=>{
+function clearScreenFromAudiencePoll(){
     document.querySelector(".audience-poll-outer-container").innerHTML = "";
 }
 
@@ -245,81 +301,66 @@ const optionFun = ()=>{
 // flip the question lifeline -------------
 
 
-// const flipTheQuestionCrossMark = ()=>{
-//     let t = document.querySelector(".flip-the-question").children;
-//     for(let i=0;i<t.length;i++)
-//         t[i].classList.add("opacity-one");
-// }
+const flipTheQuestionCrossMark = ()=>{
+    let t = document.querySelector(".flip-the-question").children;
+    for(let i=0;i<t.length;i++)
+        t[i].classList.add("opacity-one");
+}
 
-// const FiftyFiftySound = ()=>{
-//     audiencePollSound.currentTime = 8.2;
-//     audiencePollSound.play();
-// }
+const flipTheQuestionLogic = ()=>{
+    // const kbcQuestionsContent = `
+    //     <div class="timer-container">
+    //         <div class="timer">0</div>
+    //     </div>
+    //     <div class="question-box">
+    //         <div class="question">${kbcQuestions[currentQuestIndex][0].question}</div>
+    //     </div>
+    //     <div class="answer-box">
+    //         <div id="a" class="answer-opt"><span>A)</span>${kbcQuestions[currentQuestIndex][0].a}</div>
+    //         <div id="b" class="answer-opt"><span>B)</span>${kbcQuestions[currentQuestIndex][0].b}</div>
+    //         <div id="c" class="answer-opt"><span>C)</span>${kbcQuestions[currentQuestIndex][0].c}</div>
+    //         <div id="d" class="answer-opt"><span>D)</span>${kbcQuestions[currentQuestIndex][0].d}</div>
+    //     </div>
+    // `;
 
-// function shuffleArray(array) {
-//     for (var i = array.length - 1; i > 0; i--) {
-//         var j = Math.floor(Math.random() * (i + 1));
-//         var temp = array[i];
-//         array[i] = array[j];
-//         array[j] = temp;
-//     }
-//     return array;
-// }
+    // document.querySelector(".game-area-ques-ans").innerHTML = kbcQuestionsContent;
+    // optionFun();
+    // lifelineApplied();
+    // audiencePoll();
+    // fiftyFifty();
+    // stopWatch();
+}
 
-// function correctAnsIndex(array,key){
-//     for(let i=0;i<array.length;i++)
-//     {
-//         if(array[i]==key)
-//             return i;
-//     }
-//     return 0;
-// }
-
-// const fiftyFiftyLogic = ()=>{
-//     let arr = ["a","b","c","d"];
-//     arr = shuffleArray(arr);
-//     let correctAns = kbcQuestions[currentQuestIndex][0].correct;
-//     correctOptionId = correctOptionAnsEle(correctAns);
-//     ansIndex = correctAnsIndex(arr,correctOptionId);
-
-//     temp = arr[0];
-//     arr[0] = arr[ansIndex];
-//     arr[ansIndex] = temp;
-
-//     document.getElementById(arr[1]).innerText = "";
-//     document.getElementById(arr[2]).innerText = "";
-// }
-
-// const fiftyFiftyHandler = ()=>{
-//     lifelineFlag["fiftyFiftyFlag"] = 0;
-//     document.querySelector(".lifeline-box").classList.remove("show-lifeline");
-//     document.getElementById("result").innerText = "Implementing 50-50 ...";
-//     document.querySelector(".fifty-fifty").classList.add("pointer-events-none");
-//     fiftyFiftyCrossMark();
-//     lifelineNum = document.querySelector(".lifeline-no").innerText ;
-//     lifelineNum--;
-//     document.querySelector(".lifeline-no").innerText = lifelineNum;
-//     setTimeout(()=>{
-//         document.getElementById("result").innerText = "Two Wrong Answers Removed!!";
-//         FiftyFiftySound();
-//         fiftyFiftyLogic();
-//         enableLifelineButton();
-//         optButtonEnabled();
+const flipTheQuestionHandler = ()=>{
+    lifelineFlag["flipTheQuestionFlag"] = 0;
+    document.querySelector(".lifeline-box").classList.remove("show-lifeline");
+    document.getElementById("result").innerText = "Implementing flip-the-question ...";
+    document.querySelector(".flip-the-question").classList.add("pointer-events-none");
+    flipTheQuestionCrossMark();
+    lifelineNum = document.querySelector(".lifeline-no").innerText ;
+    lifelineNum--;
+    document.querySelector(".lifeline-no").innerText = lifelineNum;
+    setTimeout(()=>{
+        document.getElementById("result").innerText = "Question flipped!!";
+        FiftyFiftySound();
+        flipTheQuestionLogic();
+        enableLifelineButton();
+        optButtonEnabled();
         
-//     },1500);
-// }
+    },1500);
+}
 
-// const fiftyFifty = ()=>{
-//     if(lifelineFlag["fiftyFiftyFlag"])
-//     {
-//         document.querySelector(".fifty-fifty").addEventListener("click",fiftyFiftyHandler);
-//     }
-//     else
-//     {
-//         fiftyFiftyCrossMark();
-//         document.querySelector(".fifty-fifty").classList.add("pointer-events-none"); 
-//     }
-// }
+const flipTheQuestion = ()=>{
+    if(lifelineFlag["flipTheQuestionFlag"])
+    {
+        document.querySelector(".flip-the-question").addEventListener("click",flipTheQuestionHandler);
+    }
+    else
+    {
+        flipTheQuestionCrossMark();
+        document.querySelector(".flip-the-question").classList.add("pointer-events-none"); 
+    }
+}
 // 50-50 lifeline-----------
 
 const fiftyFiftyCrossMark = ()=>{
@@ -365,10 +406,13 @@ const fiftyFiftyLogic = ()=>{
 
     document.getElementById(arr[1]).innerText = "";
     document.getElementById(arr[2]).innerText = "";
+    ele = document.getElementById(arr[1]).style.pointerEvents = "none";
+    document.getElementById(arr[2]).style.pointerEvents = "none";
 }
 
 const fiftyFiftyHandler = ()=>{
     lifelineFlag["fiftyFiftyFlag"] = 0;
+    disableQuitButton();
     document.querySelector(".lifeline-box").classList.remove("show-lifeline");
     document.getElementById("result").innerText = "Implementing 50-50 ...";
     document.querySelector(".fifty-fifty").classList.add("pointer-events-none");
@@ -382,7 +426,7 @@ const fiftyFiftyHandler = ()=>{
         fiftyFiftyLogic();
         enableLifelineButton();
         optButtonEnabled();
-        
+        enableQuitButton();
     },1500);
 }
 
@@ -468,6 +512,7 @@ const audiencePollTimeout = (flag,justBeforeAudiencePoll,clearTimeoutId)=>{
             audiencePollLogic();
             enableLifelineButton();
             optButtonEnabled();
+            enableQuitButton();
         }
     else
       {
@@ -491,9 +536,7 @@ const AudiencePollSound = ()=>{
 
 const audiencePollAddHandler = ()=>{
     lifelineFlag["audiencePollFlag"] = 0;
-    // console.log("in Handler: ",lifelineFlag.audiencePollFlag);
-    // const el = document.getElementById("audience-cross-one");
-        // console.log("before:  ",el);
+    disableQuitButton();
     document.querySelector(".lifeline-box").classList.remove("show-lifeline");
     document.getElementById("result").innerText = "Implementing Audience Poll ...";
     document.querySelector(".audience-poll").classList.add("pointer-events-none");
@@ -577,6 +620,9 @@ const buildKBCquestions = ()=>{
     lifelineApplied();
     audiencePoll();
     fiftyFifty();
+    // optButtonDisabled();
+    // disableNextButton();
+    
 }
 
 
@@ -593,6 +639,8 @@ const nextButtonFun = ()=>{
         correctAnswerSound.pause();
         wrongAnswerSound.pause();
         enableLifelineButton();
+        quitButton();
+        disableNextButton();
     }
 }
 
@@ -627,6 +675,13 @@ const questForSpecificPrizeMoney = ()=>{
     document.getElementById("result").innerText = `Question for ${prizeValue}`;
 }
 
+function quitButton(){
+    document.querySelector("#Quit").addEventListener("click",()=>{
+        openQuitPage();
+        clearStopWatch();
+    });
+}
+
 document.querySelector(".lets-play-image").addEventListener("click",()=>{
     buildKBCquestions();
     buildMoneyArea();
@@ -635,13 +690,9 @@ document.querySelector(".lets-play-image").addEventListener("click",()=>{
     stopWatch();
     document.querySelector("#Next").addEventListener("click",nextButtonFun);
     document.querySelector(".lifeline-box").classList.remove("show-lifeline");
+    quitButton();
+    disableNextButton();
 })
-
-document.querySelector("#Quit").addEventListener("click",()=>{
-    document.querySelector(".timer").innerText = 0;
-});
-
-
 
 const openingSound = ()=>{
     page1Sound.currentTime = 0;
