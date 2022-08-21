@@ -67,6 +67,7 @@ const lifelineComesUpSound = new Audio("./sounds/lifeline-comesUp.mp3");
 const audiencePollSound = new Audio("./sounds/audience_poll.mp3");
 
 let currentQuestIndex = 0;
+let currentRandomQuestIndex;
 let prevQuestIndex;
 let currSetTimeoutId ;
 
@@ -156,7 +157,7 @@ const clearStopWatch = ()=>{
 }
 
 const correctOptionAnsEle = (correctAns)=>{
-    obj = kbcQuestions[currentQuestIndex][0];
+    obj = kbcQuestions[currentQuestIndex][currentRandomQuestIndex];
     for(let items in obj)
     {
         if(obj[items] == correctAns)
@@ -174,18 +175,12 @@ const WrongAnswerSound = ()=>{
     wrongAnswerSound.play();
 }
 
-function openQuitPage(){
-    quitContent = `  Quit the show `;
-    clearScreenFromAudiencePoll(); 
-    document.querySelector(".game-area").innerHTML = quitContent;
-}
-
 //Result Analysis--------
 const resultAnalysis = (e)=>{
     answerLockSound.pause();
     contestantAnsObject = e.childNodes;
     contestantAns = contestantAnsObject[1].nodeValue;
-    correctAns = kbcQuestions[currentQuestIndex][0].correct;
+    correctAns = kbcQuestions[currentQuestIndex][currentRandomQuestIndex].correct;
     if(contestantAns == correctAns)
     {
         CorrectAnswerSound();
@@ -600,18 +595,20 @@ const lifelineApplied = ()=>{
 }
 
 const buildKBCquestions = ()=>{
+    questSetLength = kbcQuestions[currentQuestIndex].length;
+    currentRandomQuestIndex = getRandom(0,questSetLength-1);
     const kbcQuestionsContent = `
         <div class="timer-container">
             <div class="timer">0</div>
         </div>
         <div class="question-box">
-            <div class="question">${kbcQuestions[currentQuestIndex][0].question}</div>
+            <div class="question">${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].question}</div>
         </div>
         <div class="answer-box">
-            <div id="a" class="answer-opt"><span>A)</span>${kbcQuestions[currentQuestIndex][0].a}</div>
-            <div id="b" class="answer-opt"><span>B)</span>${kbcQuestions[currentQuestIndex][0].b}</div>
-            <div id="c" class="answer-opt"><span>C)</span>${kbcQuestions[currentQuestIndex][0].c}</div>
-            <div id="d" class="answer-opt"><span>D)</span>${kbcQuestions[currentQuestIndex][0].d}</div>
+            <div id="a" class="answer-opt"><span>A)</span>${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].a}</div>
+            <div id="b" class="answer-opt"><span>B)</span>${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].b}</div>
+            <div id="c" class="answer-opt"><span>C)</span>${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].c}</div>
+            <div id="d" class="answer-opt"><span>D)</span>${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].d}</div>
         </div>
     `;
 
@@ -673,6 +670,34 @@ const questForSpecificPrizeMoney = ()=>{
     let prizeId = `${currentQuestIndex}`;
     let prizeValue = document.getElementById(prizeId).innerText ;
     document.getElementById("result").innerText = `Question for ${prizeValue}`;
+}
+
+
+function openQuitPage(){
+    contestantName = document.getElementById("contestant-name").innerText;
+
+
+    quitContent = `  
+    <div class="quit-container">
+        <div class="transfer-image"></div>
+        <div class="quit-info-container">
+            <div class="people">
+                <div class="person-image"></div>
+                <div class="person-info">
+                    <p id="contestant-name">${contestantName}</p>
+                    <span>contestant</span>
+                </div>
+            </div>
+            <div class="congratulation">fabulous performance</div>
+            <div class="prize-money-earned">Prize Money Earned :</div>
+            <div class="money">50,00,000</div>
+            <div class="last-comment">done done well done good keep it up</div>
+        </div>
+    </div>
+
+    `;
+    clearScreenFromAudiencePoll(); 
+    document.querySelector(".game-area").innerHTML = quitContent;
 }
 
 function quitButton(){

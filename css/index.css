@@ -497,7 +497,60 @@ a{
     pointer-events: none;
 }
 
+.quit-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:5em;
+    /* border:2px solid green; */
+    /* position:absolute; */
+    /* top:50%; */
+    /* left:50%; */
+    /* transform:translate(-50%,-50%); */
+}
+.transfer-image{
+    /* border:2px solid red; */
+    border-radius: 5px;
+    height:400px;
+    /* width:300px; */
+    background-color: green;
+    background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url("../images/moneyTransfer.png");
+    background-position:center;
+    background-size:cover;
+    margin-right:2rem;
+    flex-basis:30%;
+}
 
+.quit-info-container{
+    /* border:1px solid red; */
+    flex-basis: 40%;
+    background-color:blanchedalmond;
+    background:transparent;
+}
+
+.congratulation{
+    font-size:4rem;
+    color:aquamarine;
+    margin:2rem 0;
+    /* margin-top:1rem; */
+}
+
+.prize-money-earned{
+    font-size:0.8rem;
+    color:white;
+    margin-bottom:0.3rem;
+}
+
+.money{
+    font-size:3rem;
+    color:aqua;
+}
+
+.last-comment{
+    font-size:1.4rem;
+    color:white;
+    margin:2rem 0;
+}
 /* -------------------media query--------------- */
 
 @media screen and (max-width:480px){
@@ -518,10 +571,40 @@ a{
         flex-basis:100%;
     }
 
+    .game-area{
+        flex-basis:100%;
+        width:100vw;
+    }
     .money-area{
         position:absolute;
         opacity:0;
         pointer-events: none;
+        flex-basis:0%;
+        flex-grow: 0;
+    }
+
+    /* --------------- QUIT PAGE --------- */
+    .quit-container{
+        margin-top: 150px;
+    }
+    .transfer-image{
+        position:absolute;
+        opacity:0;
+        pointer-events: none;
+    }
+    .quit-info-container{
+        width:90vw;
+        text-align:center;
+        /* border:1px solid white; */
+    }
+    .people{
+        justify-content: center;
+    }
+    .congratulation{
+        font-size:3rem;
+    }
+    .money{
+        font-size:2.8rem;
     }
 }
 
