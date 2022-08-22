@@ -65,9 +65,12 @@ const correctAnswerSound = new Audio("./sounds/kbc_background.mp3");
 const answerLockSound = new Audio("./sounds/ans_lock2.mp3");
 const lifelineComesUpSound = new Audio("./sounds/lifeline-comesUp.mp3");
 const audiencePollSound = new Audio("./sounds/audience_poll.mp3");
+const audiencePollImplementationSound = new Audio("./sounds/audiencePoll_Implementation.mp3");
+const doubleDipWrongAnswerSound = new Audio("./sounds/wrong_ans.mp3");
 
 let currentQuestIndex = 0;
 let currentRandomQuestIndex;
+let currQuestObject;
 let prevQuestIndex;
 let currSetTimeoutId ;
 
@@ -76,6 +79,11 @@ let lifelineFlag = {
     flipTheQuestionFlag : 1,
     fiftyFiftyFlag : 1,
     doubleDipFlag : 1,
+    doubleDipMarker: 0,
+}
+
+let colors = {
+    page2btn : "rgb(30, 115, 125)",
 }
 
 
@@ -157,7 +165,7 @@ const clearStopWatch = ()=>{
 }
 
 const correctOptionAnsEle = (correctAns)=>{
-    obj = kbcQuestions[currentQuestIndex][currentRandomQuestIndex];
+    obj = currQuestObject;
     for(let items in obj)
     {
         if(obj[items] == correctAns)
@@ -175,12 +183,26 @@ const WrongAnswerSound = ()=>{
     wrongAnswerSound.play();
 }
 
+const DoubleDipWrongAnswerSound = ()=>{
+    doubleDipWrongAnswerSound.currentTime = 0;
+    doubleDipWrongAnswerSound.play();
+}
+
+function doubleDipLogic(e){
+
+    document.querySelector("#result").innerText = "Wrong Answer ! Make Second Guess";
+    e.style.backgroundColor = "lightcoral";
+    optButtonEnabled();
+    e.style.pointerEvents = "none";
+    lifelineFlag.doubleDipMarker = 0;
+}
+
 //Result Analysis--------
 const resultAnalysis = (e)=>{
     answerLockSound.pause();
     contestantAnsObject = e.childNodes;
     contestantAns = contestantAnsObject[1].nodeValue;
-    correctAns = kbcQuestions[currentQuestIndex][currentRandomQuestIndex].correct;
+    correctAns = currQuestObject.correct;
     if(contestantAns == correctAns)
     {
         CorrectAnswerSound();
@@ -191,13 +213,21 @@ const resultAnalysis = (e)=>{
     }
     else
     {
-        WrongAnswerSound();
-        document.getElementById("result").innerText = "Wrong Answer";
-        e.style.backgroundColor = "lightcoral";
-        correctOptionId = correctOptionAnsEle(correctAns);
-        document.getElementById(correctOptionId).style.backgroundColor = "greenyellow";
-        document.getElementById(correctOptionId).style.color = "black";
-        setTimeout(openQuitPage,12000);
+        if(lifelineFlag.doubleDipMarker==1)
+        {
+            DoubleDipWrongAnswerSound();
+            doubleDipLogic(e);
+        }
+        else
+        {
+            WrongAnswerSound();
+            document.getElementById("result").innerText = "Wrong Answer";
+            e.style.backgroundColor = "lightcoral";
+            correctOptionId = correctOptionAnsEle(correctAns);
+            document.getElementById(correctOptionId).style.backgroundColor = "greenyellow";
+            document.getElementById(correctOptionId).style.color = "black";
+            setTimeout(openQuitPage,12000);
+        }
     }
 }
 
@@ -293,6 +323,54 @@ const optionFun = ()=>{
 
 
 //Life-line.............
+
+function LifelineImplementationSound(){
+    audiencePollSound.currentTime = 4;
+    audiencePollSound.play();
+}
+
+// double dip lifeline --------------------
+
+
+const doubleDipCrossMark = ()=>{
+    let t = document.querySelector(".double-dip").children;
+    for(let i=0;i<t.length;i++)
+        t[i].classList.add("opacity-one");
+}
+
+const doubleDipHandler = ()=>{
+    lifelineFlag["doubleDipFlag"] = 0;
+    document.querySelector(".lifeline-box").classList.remove("show-lifeline");
+    document.getElementById("result").innerText = "Implementing double-dip ...";
+    LifelineImplementationSound();
+    document.querySelector(".double-dip").classList.add("pointer-events-none");
+    doubleDipCrossMark();
+    lifelineNum = document.querySelector(".lifeline-no").innerText ;
+    lifelineNum--;
+    document.querySelector(".lifeline-no").innerText = lifelineNum;
+    setTimeout(()=>{
+        document.getElementById("result").innerText = "--Make Your first Guess--";
+        lifelineFlag.doubleDipMarker = 1;
+        // FiftyFiftySound();
+        // doubleDipLogic();
+        enableLifelineButton();
+        optButtonEnabled();
+        
+    },4250);
+}
+
+const doubleDip = ()=>{
+    if(lifelineFlag["doubleDipFlag"])
+    {
+        document.querySelector(".double-dip").addEventListener("click",doubleDipHandler);
+    }
+    else
+    {
+        doubleDipCrossMark();
+        document.querySelector(".double-dip").classList.add("pointer-events-none"); 
+    }
+}
+
 // flip the question lifeline -------------
 
 
@@ -303,33 +381,48 @@ const flipTheQuestionCrossMark = ()=>{
 }
 
 const flipTheQuestionLogic = ()=>{
-    // const kbcQuestionsContent = `
-    //     <div class="timer-container">
-    //         <div class="timer">0</div>
-    //     </div>
-    //     <div class="question-box">
-    //         <div class="question">${kbcQuestions[currentQuestIndex][0].question}</div>
-    //     </div>
-    //     <div class="answer-box">
-    //         <div id="a" class="answer-opt"><span>A)</span>${kbcQuestions[currentQuestIndex][0].a}</div>
-    //         <div id="b" class="answer-opt"><span>B)</span>${kbcQuestions[currentQuestIndex][0].b}</div>
-    //         <div id="c" class="answer-opt"><span>C)</span>${kbcQuestions[currentQuestIndex][0].c}</div>
-    //         <div id="d" class="answer-opt"><span>D)</span>${kbcQuestions[currentQuestIndex][0].d}</div>
-    //     </div>
-    // `;
+    questSetLength = kbcQuestions[currentQuestIndex].length;
+    let flipIndex;
+    if(questSetLength==1)
+        flipIndex = 0;
+    else
+    {
+        do{
+            flipIndex = getRandom(0,questSetLength-1);
+        }while(flipIndex==currentRandomQuestIndex);
+    }
+    
+    currQuestObject = kbcQuestions[currentQuestIndex][flipIndex];
+    currQuestObject = shuffleOptions(currQuestObject);
+    const kbcQuestionsContent = `
+        <div class="timer-container">
+            <div class="timer">0</div>
+        </div>
+        <div class="question-box">
+            <div class="question">${currQuestObject.question}</div>
+        </div>
+        <div class="answer-box">
+            <div id="a" class="answer-opt"><span>A)</span>${currQuestObject.a}</div>
+            <div id="b" class="answer-opt"><span>B)</span>${currQuestObject.b}</div>
+            <div id="c" class="answer-opt"><span>C)</span>${currQuestObject.c}</div>
+            <div id="d" class="answer-opt"><span>D)</span>${currQuestObject.d}</div>
+        </div>
+    `;
 
-    // document.querySelector(".game-area-ques-ans").innerHTML = kbcQuestionsContent;
-    // optionFun();
-    // lifelineApplied();
-    // audiencePoll();
-    // fiftyFifty();
-    // stopWatch();
+    document.querySelector(".game-area-ques-ans").innerHTML = kbcQuestionsContent;
+    optionFun();
+    lifelineApplied();
+    audiencePoll();
+    fiftyFifty();
+    flipTheQuestion();
+    stopWatch();
 }
 
 const flipTheQuestionHandler = ()=>{
     lifelineFlag["flipTheQuestionFlag"] = 0;
     document.querySelector(".lifeline-box").classList.remove("show-lifeline");
     document.getElementById("result").innerText = "Implementing flip-the-question ...";
+    LifelineImplementationSound();
     document.querySelector(".flip-the-question").classList.add("pointer-events-none");
     flipTheQuestionCrossMark();
     lifelineNum = document.querySelector(".lifeline-no").innerText ;
@@ -337,12 +430,12 @@ const flipTheQuestionHandler = ()=>{
     document.querySelector(".lifeline-no").innerText = lifelineNum;
     setTimeout(()=>{
         document.getElementById("result").innerText = "Question flipped!!";
-        FiftyFiftySound();
+        // FiftyFiftySound();
         flipTheQuestionLogic();
         enableLifelineButton();
         optButtonEnabled();
         
-    },1500);
+    },4250);
 }
 
 const flipTheQuestion = ()=>{
@@ -391,7 +484,7 @@ function correctAnsIndex(array,key){
 const fiftyFiftyLogic = ()=>{
     let arr = ["a","b","c","d"];
     arr = shuffleArray(arr);
-    let correctAns = kbcQuestions[currentQuestIndex][0].correct;
+    let correctAns = currQuestObject.correct;
     correctOptionId = correctOptionAnsEle(correctAns);
     ansIndex = correctAnsIndex(arr,correctOptionId);
 
@@ -405,11 +498,14 @@ const fiftyFiftyLogic = ()=>{
     document.getElementById(arr[2]).style.pointerEvents = "none";
 }
 
+
 const fiftyFiftyHandler = ()=>{
     lifelineFlag["fiftyFiftyFlag"] = 0;
     disableQuitButton();
     document.querySelector(".lifeline-box").classList.remove("show-lifeline");
     document.getElementById("result").innerText = "Implementing 50-50 ...";
+    // AudiencePollImplementationSound();
+    LifelineImplementationSound();
     document.querySelector(".fifty-fifty").classList.add("pointer-events-none");
     fiftyFiftyCrossMark();
     lifelineNum = document.querySelector(".lifeline-no").innerText ;
@@ -417,12 +513,12 @@ const fiftyFiftyHandler = ()=>{
     document.querySelector(".lifeline-no").innerText = lifelineNum;
     setTimeout(()=>{
         document.getElementById("result").innerText = "Two Wrong Answers Removed!!";
-        FiftyFiftySound();
+        // FiftyFiftySound();
         fiftyFiftyLogic();
         enableLifelineButton();
         optButtonEnabled();
         enableQuitButton();
-    },1500);
+    },4250);
 }
 
 const fiftyFifty = ()=>{
@@ -446,12 +542,12 @@ const audiencePollCrossMark = ()=>{
 
 
 const audiencePollLogic = ()=>{
-    let ans = getRandom(40,90);
+    let ans = getRandom(46,85);
     let one = getRandom(0,100-ans);
     let two = getRandom(0,100-ans-one);
     let three = 100-(ans+one+two);
 
-    let correctAns = kbcQuestions[currentQuestIndex][0].correct;
+    let correctAns = currQuestObject.correct;
     correctOptionId = correctOptionAnsEle(correctAns);
     
     let audienceOpt = ["a","b","c","d"];
@@ -504,6 +600,7 @@ const audiencePollTimeout = (flag,justBeforeAudiencePoll,clearTimeoutId)=>{
                 </div>
             `;
             document.querySelector(".audience-poll-outer-container").innerHTML = audiencePollInnerContainer;
+            document.querySelectorAll(".bar").forEach((e)=>{e.style.backgroundColor = "goldenrod"});
             audiencePollLogic();
             enableLifelineButton();
             optButtonEnabled();
@@ -516,7 +613,7 @@ const audiencePollTimeout = (flag,justBeforeAudiencePoll,clearTimeoutId)=>{
             tempFlag = flag-4;
         let ele = document.querySelector(".audience-poll-outer-container");
         ele.innerHTML = justBeforeAudiencePoll;
-        ele.children[0].children[tempFlag].style.backgroundColor = "aqua";
+        ele.children[0].children[tempFlag].style.backgroundColor = "goldenrod";
         clearTimeout(clearTimeoutId);
         flag++;
         clearTimeoutId = setTimeout(audiencePollTimeout,1000,flag,justBeforeAudiencePoll,clearTimeoutId);
@@ -529,11 +626,17 @@ const AudiencePollSound = ()=>{
     audiencePollSound.play();
 }
 
+const AudiencePollImplementationSound = ()=>{
+    audiencePollImplementationSound.currentTime = 0;
+    audiencePollImplementationSound.play();
+}
+
 const audiencePollAddHandler = ()=>{
     lifelineFlag["audiencePollFlag"] = 0;
     disableQuitButton();
     document.querySelector(".lifeline-box").classList.remove("show-lifeline");
     document.getElementById("result").innerText = "Implementing Audience Poll ...";
+    AudiencePollImplementationSound();
     document.querySelector(".audience-poll").classList.add("pointer-events-none");
     audiencePollCrossMark();
     lifelineNum = document.querySelector(".lifeline-no").innerText ;
@@ -551,7 +654,7 @@ const audiencePollAddHandler = ()=>{
         document.getElementById("result").innerText = "";
         AudiencePollSound();
         let clearTimeoutId;
-        // console.log("before timeout: ", el);
+        audiencePollImplementationSound.pause();
         audiencePollTimeout(0,justBeforeAudiencePoll,clearTimeoutId);
         // console.log("after timeout: ", el);
     },1500);
@@ -594,21 +697,38 @@ const lifelineApplied = ()=>{
     }
 }
 
+function shuffleOptions(currQuestObject){
+    one = currQuestObject.a;
+    two = currQuestObject.b;
+    three = currQuestObject.c;
+    four = currQuestObject.d;
+    arr = [one,two,three,four];
+    arr = shuffleArray(arr);
+    currQuestObject.a = arr[0];
+    currQuestObject.b = arr[1];
+    currQuestObject.c = arr[2];
+    currQuestObject.d = arr[3];
+
+    return currQuestObject;
+}
+
 const buildKBCquestions = ()=>{
     questSetLength = kbcQuestions[currentQuestIndex].length;
     currentRandomQuestIndex = getRandom(0,questSetLength-1);
+    currQuestObject = kbcQuestions[currentQuestIndex][currentRandomQuestIndex];
+    currQuestObject = shuffleOptions(currQuestObject);
     const kbcQuestionsContent = `
         <div class="timer-container">
             <div class="timer">0</div>
         </div>
         <div class="question-box">
-            <div class="question">${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].question}</div>
+            <div class="question">${currQuestObject.question}</div>
         </div>
         <div class="answer-box">
-            <div id="a" class="answer-opt"><span>A)</span>${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].a}</div>
-            <div id="b" class="answer-opt"><span>B)</span>${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].b}</div>
-            <div id="c" class="answer-opt"><span>C)</span>${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].c}</div>
-            <div id="d" class="answer-opt"><span>D)</span>${kbcQuestions[currentQuestIndex][currentRandomQuestIndex].d}</div>
+            <div id="a" class="answer-opt"><span>A)</span>${currQuestObject.a}</div>
+            <div id="b" class="answer-opt"><span>B)</span>${currQuestObject.b}</div>
+            <div id="c" class="answer-opt"><span>C)</span>${currQuestObject.c}</div>
+            <div id="d" class="answer-opt"><span>D)</span>${currQuestObject.d}</div>
         </div>
     `;
 
@@ -617,6 +737,8 @@ const buildKBCquestions = ()=>{
     lifelineApplied();
     audiencePoll();
     fiftyFifty();
+    flipTheQuestion();
+    doubleDip();
     // optButtonDisabled();
     // disableNextButton();
     
@@ -662,7 +784,7 @@ const buildMoneyArea = ()=>{
     document.querySelector("#money-area").classList.add("money-area");
     document.querySelector("#money-area").innerHTML = moneyAreaPrizes;
     let prizeId = `${currentQuestIndex}`;
-    document.getElementById(prizeId).style.backgroundColor = "blueviolet";
+    document.getElementById(prizeId).style.backgroundColor = colors.page2btn;
     document.getElementById(prizeId).style.borderRadius = "5px";
 }
 
@@ -812,7 +934,7 @@ allBtns.forEach((ele)=>{
 })
 
 const buttonSelect = (element)=>{
-    element.style.boxShadow = "0px 0px 15px 3px rgb(64, 189, 189)";
+    element.style.boxShadow = "0px 0px 10px 4px rgb(64, 189, 189)";
 }
 
 const buttonDeselect = (element)=>{

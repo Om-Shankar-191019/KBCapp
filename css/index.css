@@ -6,8 +6,8 @@
 }
 
 :root{
-    --btnHover:rgb(64, 189, 189);
-    --page2btn:blueviolet;
+    --btnHover:goldenrod;
+    --page2btn:rgb(30, 115, 125);
 }
 
 
@@ -77,7 +77,7 @@ a{
     top:0;
     left:0;
     z-index: -1;
-    transition:all 0.28s ease;
+    transition:all 0.2s ease;
 }
 
 .btn:hover::after{
@@ -181,7 +181,7 @@ a{
     width:50px;
     border-radius:50%;
     background-color:white;
-    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmlnKXPI58izFxDF3Y1q5PWL3LNwlhWeugng&usqp=CAU);
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU);
     background-position:center;
     background-size:cover;
     background-repeat: no-repeat;
@@ -193,7 +193,8 @@ a{
 }
 .person-info span{
     font-size:0.7rem;
-    color:var(--btnHover);
+    color:var(--page2btn);
+    font-weight: bold;
 }
 
 .page2btn , .lifeline-no{
@@ -263,7 +264,7 @@ a{
     justify-content: center;
 }
 .timer{
-    border:1px solid blueviolet;
+    /* border:1px solid blueviolet; */
     height:80px;
     width:80px;
     border-radius:50%;
@@ -272,16 +273,17 @@ a{
     align-items:center;
     font-size:2rem;
     font-family: "Algerian", Arial , Helvetica , sans-serif;
-    box-shadow:0px 0px 10px 1px var(--page2btn);
+    box-shadow:0px 0px 10px 3px var(--page2btn);
 }
 .question-box{
     flex-basis:40%;
-    box-shadow:0px 0px 10px 1px var(--page2btn);
+    box-shadow:0px 0px 10px 3px var(--page2btn);
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size:1.2em;
+    margin-bottom:6px;
     /* background-color:yellowgreen; */
 }
 .question{
@@ -307,8 +309,8 @@ a{
     /* background-color: red; */
     width:49%;
     height:46px;
-    margin:0.3 0;
-    box-shadow:0px 0px 10px 1px var(--page2btn);
+    margin:0.3em 0;
+    box-shadow:0px 0px 10px 3px var(--page2btn);
     border-radius: 5px;
     padding:0.3em;
     display: flex;
@@ -357,7 +359,7 @@ a{
   }
   
   .bullets , .lifeline-item{
-  /*   border:1px solid blue; */
+    /* border:1px solid blue; */
     height:30px;
     width:30px;
     box-shadow:0px 0px 12px grey;
@@ -447,7 +449,8 @@ a{
 .bar{
     width:1.6rem;
     height:90%;
-    background-color:goldenrod;
+    border:1px solid goldenrod;
+    /* background-color:transparent; */
     box-shadow: 3px 0px 1px gold;
     border-radius: 5px;
     margin:0 3px;
@@ -581,6 +584,28 @@ a{
         pointer-events: none;
         flex-basis:0%;
         flex-grow: 0;
+    }
+    .game-area-result{
+        flex-basis:15%;
+    }
+    .game-area-ques-ans{
+        flex-basis: 65%;
+    }
+    .timer-container{
+        flex-basis:15%;
+    }
+    
+    .answer-box{
+        flex-direction: column;
+        flex-basis:45%;  
+    }
+    .answer-opt{
+        width:100%;
+        margin:3px 0;
+    }
+    .audience-poll-inner-container{
+        top:13%;
+        left:70%;
     }
 
     /* --------------- QUIT PAGE --------- */
