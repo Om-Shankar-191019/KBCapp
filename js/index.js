@@ -1,12 +1,12 @@
 const kbcQuestions = 
     [
         [{
-            question:"Who is the Prime minister of India?",
-            a:"Manmohan Singh",
-            b:"Nitesh Kumar",
-            c:"Narendra Modi",
-            d:"Shushil Modi",
-            correct:"Narendra Modi",
+            question:"A coin of what value is called as “Athhanni”?",
+            a:"1 Rupee",
+            b:"25 Paise",
+            c:"50 Paise",
+            d:"2 Rupee",
+            correct:"50 Paise",
         },
         {
             question:"How many days are there in a week?",
@@ -16,14 +16,16 @@ const kbcQuestions =
             d:"7",
             correct:"7",
         }],
+
         [{
-            question:"Who is the governor of bihar?",
+            question:"Who is the governor of bihar as of now in 2022?",
             a:"Phagu Chauhan",
             b:"Nitesh Kumar",
             c:"RamNath Kovind",
             d:"Sushil Modi",
             correct:"Phagu Chauhan",
         }],
+
         [{
             question:"In which state Kedarnath temple is located?",
             a:"Uttar Pradesh",
@@ -32,6 +34,7 @@ const kbcQuestions =
             d:"Jharkhand",
             correct:"Uttarakhand",
         }],
+
         [{
             question:"Where is the capital of Rajasthan?",
             a:"Raipur",
@@ -40,6 +43,7 @@ const kbcQuestions =
             d:"Shimla",
             correct:"Jaipur",
         }],
+
         [{
             question:"How many district are there in bihar?",
             a:"36",
@@ -48,6 +52,7 @@ const kbcQuestions =
             d:"41",
             correct:"38",
         }],
+
         [{
             question:"In which year India got independence?",
             a:"1945",
@@ -55,7 +60,89 @@ const kbcQuestions =
             c:"1948",
             d:"1951",
             correct:"1947",
-        }]
+        }],
+
+        [{
+            question:"Which glacier is the primary source of the river Ganga?",
+            a:"Pindari ",
+            b:"Godwin-Austen",
+            c:"Siachen",
+            d:"Gangotri",
+            correct:"Gangotri",
+        }],
+
+        [{
+            question:"Which of these terms can only be used for women?",
+            a:"Dirghaayu",
+            b:"Suhagan",
+            c:"Chiranjeevi",
+            d:"Sushil",
+            correct:"Suhagan",
+        }],
+
+        [{
+            question:"Bahubali festival is related to",
+            a:"Islam",
+            b:"Hinduism",
+            c:"Buddhism",
+            d:"Jainism",
+            correct:"Jainism",
+        }],
+
+        [{
+            question:"The Rath Yatra at Puri is celebrated in honour of which Hindu diety?",
+            a:"Ram",
+            b:"Shiva",
+            c:"Vishnu",
+            d:"Jagannath",
+            correct:"Jagannath",
+        }],
+
+        [{
+            question:"Which of the following Constitutional posts is enjoyed for a fixed term?",
+            a:"President",
+            b:"Chief Justice",
+            c:"Prime Minister",
+            d:"Governor",
+            correct:"President",
+        }],
+
+        [{
+            question:"Who was the first Muslim lady to sit in the throne of Delhi?",
+            a:"Noorjehan",
+            b:"Razia Riaz Monnera",
+            c:"Iltumisha",
+            d:"Sultana Razia Begum",
+            correct:"Sultana Razia Begum",
+        }],
+
+        [{
+            question:"Who was the last ruler of the Mughal dynasty?",
+            a:"Bahadur Shah Zafar",
+            b:"Aurangzeb",
+            c:"Jehangir",
+            d:"Shah Jahan",
+            correct:"Bahadur Shah Zafar",
+        }],
+
+        [{
+            question:"Who wrote the national anthem of India?",
+            a:"Mahatma Gandhi",
+            b:"Jawarharlal Nehru",
+            c:"Bankim Chandra Chatterjee",
+            d:"Rabindranath Tagore",
+            correct:"Rabindranath Tagore",
+        }],
+
+        [{
+            question:"In what year was Mahatma Gandhi assassinated?",
+            a:"1945",
+            b:"1947",
+            c:"1948",
+            d:"1949",
+            correct:"1948",
+        }],
+
 ];
 const page1Sound = new Audio("./sounds/Kaun_Banega_Crorepati_Bgm.mp3");
 const welcomeSound = new Audio("./sounds/page2_kbc_intro_audio.mp3")
@@ -67,6 +154,7 @@ const lifelineComesUpSound = new Audio("./sounds/lifeline-comesUp.mp3");
 const audiencePollSound = new Audio("./sounds/audience_poll.mp3");
 const audiencePollImplementationSound = new Audio("./sounds/audiencePoll_Implementation.mp3");
 const doubleDipWrongAnswerSound = new Audio("./sounds/wrong_ans.mp3");
+const themeMusic = new Audio("./sounds/THEME_MUSIC2.mp3");
 
 let currentQuestIndex = 0;
 let currentRandomQuestIndex;
@@ -80,6 +168,14 @@ let lifelineFlag = {
     fiftyFiftyFlag : 1,
     doubleDipFlag : 1,
     doubleDipMarker: 0,
+}
+
+let quitFlag = {
+    wrongAnswerFlag: 0,
+    timeUpFlag: 0,
+    quitButtonFlag: 0,
+    oneCroreFlag: 0,
+    winningAmount: 0,
 }
 
 let colors = {
@@ -127,6 +223,12 @@ const TimeUpSound = ()=>{
 
 const timeUp = ()=>{
     TimeUpSound();
+    quitFlag.timeUpFlag = 1;
+    correctAns = currQuestObject.correct;
+    correctOptionId = correctOptionAnsEle(correctAns);
+    document.getElementById(correctOptionId).style.backgroundColor = "greenyellow";
+    document.getElementById(correctOptionId).style.color = "black";
+
     document.getElementById("result").innerText = "#Time Up";
     disableLifelineButton();
     disableQuitButton();
@@ -206,10 +308,16 @@ const resultAnalysis = (e)=>{
     if(contestantAns == correctAns)
     {
         CorrectAnswerSound();
+        quitFlag.winningAmount = document.getElementById(currentQuestIndex).innerText;
         document.getElementById("result").innerText = "Correct Answer";
         e.style.backgroundColor = "greenyellow";
         enableNextButton();
         enableQuitButton();
+        if(currentQuestIndex==14){
+            setTimeout(openQuitPage,5000);
+            quitFlag.oneCroreFlag = 1;
+            disableQuitButton();
+        }
     }
     else
     {
@@ -226,6 +334,8 @@ const resultAnalysis = (e)=>{
             correctOptionId = correctOptionAnsEle(correctAns);
             document.getElementById(correctOptionId).style.backgroundColor = "greenyellow";
             document.getElementById(correctOptionId).style.color = "black";
+            disableQuitButton();
+            quitFlag.wrongAnswerFlag = 1;
             setTimeout(openQuitPage,12000);
         }
     }
@@ -353,7 +463,8 @@ const doubleDipHandler = ()=>{
         lifelineFlag.doubleDipMarker = 1;
         // FiftyFiftySound();
         // doubleDipLogic();
-        enableLifelineButton();
+        if(document.querySelector(".lifeline-no").innerText >0 )
+            enableLifelineButton();
         optButtonEnabled();
         
     },4250);
@@ -432,7 +543,8 @@ const flipTheQuestionHandler = ()=>{
         document.getElementById("result").innerText = "Question flipped!!";
         // FiftyFiftySound();
         flipTheQuestionLogic();
-        enableLifelineButton();
+        if(document.querySelector(".lifeline-no").innerText >0 )
+            enableLifelineButton();
         optButtonEnabled();
         
     },4250);
@@ -515,7 +627,8 @@ const fiftyFiftyHandler = ()=>{
         document.getElementById("result").innerText = "Two Wrong Answers Removed!!";
         // FiftyFiftySound();
         fiftyFiftyLogic();
-        enableLifelineButton();
+        if(document.querySelector(".lifeline-no").innerText >0 )
+            enableLifelineButton();
         optButtonEnabled();
         enableQuitButton();
     },4250);
@@ -602,7 +715,8 @@ const audiencePollTimeout = (flag,justBeforeAudiencePoll,clearTimeoutId)=>{
             document.querySelector(".audience-poll-outer-container").innerHTML = audiencePollInnerContainer;
             document.querySelectorAll(".bar").forEach((e)=>{e.style.backgroundColor = "goldenrod"});
             audiencePollLogic();
-            enableLifelineButton();
+            if(document.querySelector(".lifeline-no").innerText >0 )
+                enableLifelineButton();
             optButtonEnabled();
             enableQuitButton();
         }
@@ -687,14 +801,17 @@ const lifelineApplied = ()=>{
             clearStopWatch();
             optButtonDisabled();
             disableNextButton();
+            // if(document.querySelector(".lifeline-no").innerText >0 )
             disableLifelineButton();
         })
     }
-    else
-    {
-        disableLifelineButton();
-        document.getElementById("result").innerText = "You have NO lifeline left !!";
-    }
+    // else
+    // {
+    //     console.log("nono");
+    //     document.getElementById("lifeline-button").addEventListener("click",()=>{
+    //         document.getElementById("result").innerText = "You have NO lifeline left !!";
+    //     })
+    // }
 }
 
 function shuffleOptions(currQuestObject){
@@ -739,6 +856,7 @@ const buildKBCquestions = ()=>{
     fiftyFifty();
     flipTheQuestion();
     doubleDip();
+    
     // optButtonDisabled();
     // disableNextButton();
     
@@ -757,7 +875,8 @@ const nextButtonFun = ()=>{
         stopWatch();
         correctAnswerSound.pause();
         wrongAnswerSound.pause();
-        enableLifelineButton();
+        if(document.querySelector(".lifeline-no").innerText >0 )
+            enableLifelineButton();
         quitButton();
         disableNextButton();
     }
@@ -783,6 +902,8 @@ const buildMoneyArea = ()=>{
     `;
     document.querySelector("#money-area").classList.add("money-area");
     document.querySelector("#money-area").innerHTML = moneyAreaPrizes;
+    document.getElementById('4').style.color = "gold";
+    document.getElementById('9').style.color = "gold";
     let prizeId = `${currentQuestIndex}`;
     document.getElementById(prizeId).style.backgroundColor = colors.page2btn;
     document.getElementById(prizeId).style.borderRadius = "5px";
@@ -794,11 +915,83 @@ const questForSpecificPrizeMoney = ()=>{
     document.getElementById("result").innerText = `Question for ${prizeValue}`;
 }
 
+function congratulationComment(ind){
+    let comment ;
+    if(ind<0)
+        comment = "Well";
+    else if(ind>=0 && ind<2)
+        comment = "Well";
+    else if(ind>=2 && ind<6)
+        comment = "Well Played";
+    else if(ind>=6 && ind<10)
+        comment = "You Rock";
+    else if(ind>=10 && ind<14)
+        comment = "Great Game";
+    else
+        comment = "fabulous performance";
+
+    return comment;
+}
+
+function lastEndComment(money){
+    let com;
+    if(money>=320000)
+        com = "congratulation for winning such a huge amount!";
+    else if(money>0)
+        com = "It was a good game. played nicely!!";
+    else
+        com = "Sorry you could not win anything.";
+
+    return com;
+}
+
+function ThemeMusic(){
+    themeMusic.currentTime = 0;
+    themeMusic.play();
+}
 
 function openQuitPage(){
     contestantName = document.getElementById("contestant-name").innerText;
+    let congratulation;
+    let money;
+    let lastComment;
+    if(quitFlag.oneCroreFlag)
+    {
+        congratulation = congratulationComment(14);
+        money = "1 Crore";
+        lastComment = "Congratulation to the winner of KBC";
+    }
+    else if(quitFlag.timeUpFlag)
+    {
+        let temp;
+        temp = currentQuestIndex-1;
+        congratulation = congratulationComment(temp);
+        if(temp<0)
+            money = "00";
+        else
+            money = document.getElementById(temp).innerText;
 
-
+        lastComment = lastEndComment(money);        
+    }
+    else if(quitFlag.wrongAnswerFlag)
+    {
+        let temp = currentQuestIndex-1;
+        congratulation = congratulationComment(temp);
+        if(currentQuestIndex>9)
+            money = document.getElementById("9").innerText;
+        else if(currentQuestIndex>4)
+            money = document.getElementById("4").innerText;
+        else 
+            money = "00";        
+        lastComment =  `Your prize money comes down from ${document.getElementById(temp).innerText} to ${money} due to wrong answer.`;
+    }
+    else 
+    {
+        let temp = currentQuestIndex-1;
+        congratulation = congratulationComment(temp);
+        money = quitFlag.winningAmount;
+        lastComment = lastEndComment(money);
+    }
     quitContent = `  
     <div class="quit-container">
         <div class="transfer-image"></div>
@@ -810,22 +1003,31 @@ function openQuitPage(){
                     <span>contestant</span>
                 </div>
             </div>
-            <div class="congratulation">fabulous performance</div>
+            <div class="congratulation">${congratulation}</div>
             <div class="prize-money-earned">Prize Money Earned :</div>
-            <div class="money">50,00,000</div>
-            <div class="last-comment">done done well done good keep it up</div>
+            <div class="money">${money}</div>
+            <div class="last-comment">${lastComment}</div>
         </div>
     </div>
 
     `;
     clearScreenFromAudiencePoll(); 
+    ThemeMusic();
     document.querySelector(".game-area").innerHTML = quitContent;
 }
 
 function quitButton(){
     document.querySelector("#Quit").addEventListener("click",()=>{
-        openQuitPage();
+        quitFlag.quitButtonFlag = 1;
+        correctAns = currQuestObject.correct;
+        correctOptionId = correctOptionAnsEle(correctAns);
+        document.getElementById(correctOptionId).style.backgroundColor = "greenyellow";
+        document.getElementById(correctOptionId).style.color = "black";
+        DoubleDipWrongAnswerSound();
+        optButtonDisabled();
         clearStopWatch();
+        correctAnswerSound.pause();
+        setTimeout(openQuitPage,4000);
     });
 }
 
@@ -872,6 +1074,8 @@ const showMoneyStack = ()=>{
     `;
     document.querySelector("#money-area").classList.add("money-area");
     document.querySelector("#money-area").innerHTML = moneyAreaPrizes;
+    document.getElementById('4').style.color = "gold";
+    document.getElementById('9').style.color = "gold";
 }
 
 const hoverLifeline = ()=>{
@@ -889,12 +1093,16 @@ const LifelineComesUpSound = ()=>{
 }
 
 const showLifeline = ()=>{
-    document.querySelector("#lifeline-button").addEventListener("click",()=>{
-        document.querySelector(".lifeline-box").classList.toggle("show-lifeline");
-        hoverLifeline();
-        LifelineComesUpSound();
-        
-    })
+    // let temp = document.querySelector(".lifeline-no").innerText;
+    // if(temp)
+    // {
+        document.querySelector("#lifeline-button").addEventListener("click",()=>{
+            document.querySelector(".lifeline-box").classList.toggle("show-lifeline");
+            hoverLifeline();
+            LifelineComesUpSound();
+            
+        })
+    // }
 }
 
 // adding modal on clicking sitHotSeat button

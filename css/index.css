@@ -347,6 +347,7 @@ a{
 .each-prize{
     /* border:1px solid red; */
     flex-basis:15%;
+    font-weight: bold;
     display:flex;
     justify-content: center;
     align-items:center;
@@ -535,6 +536,7 @@ a{
     font-size:4rem;
     color:aquamarine;
     margin:2rem 0;
+    font-family:'Gill Sans';
     /* margin-top:1rem; */
 }
 
