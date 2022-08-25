@@ -1,5 +1,6 @@
 const kbcQuestions = 
     [
+        // ----------------- 1 --------------
         [{
             question:"A coin of what value is called as “Athhanni”?",
             a:"1 Rupee",
@@ -9,14 +10,78 @@ const kbcQuestions =
             correct:"50 Paise",
         },
         {
-            question:"How many days are there in a week?",
-            a:"5",
-            b:"4",
-            c:"8",
-            d:"7",
-            correct:"7",
+            question:"Our National Anthem is",
+            a:"Vande Mataram",
+            b:"Sare Jaha Se Accha",
+            c:"Jhanda Uncha Rahe Hamara",
+            d:"Jana Gana Mana",
+            correct:"Jana Gana Mana",
+        },
+        {
+            question:"What do you call homemade cheese?",
+            a:"Panir",
+            b:"Pury",
+            c:"Dahi",
+            d:"Ghee",
+            correct:"Panir",
+        },
+        {
+            question:"Which of these Roman numerals will have the lowest value?",
+            a:"L",
+            b:"X",
+            c:"V",
+            d:"C",
+            correct:"V",
+        },
+        {
+            question:"Complete this Hindi idiom: Sau baat ki___",
+            a:"Addhi baat",
+            b:"Pauni bat",
+            c:"Ek baat",
+            d:"Dedh baat",
+            correct:"Ek baat",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"Which of these is a board game which can normally be played by only two opponents at a time?",
+            a:"Snakes and ladders",
+            b:"Chess",
+            c:"Carrom",
+            d:"Ludo",
+            correct:"Chess",
         }],
-
+// ----------------- 2 ------------------------------
         [{
             question:"Who is the governor of bihar as of now in 2022?",
             a:"Phagu Chauhan",
@@ -24,8 +89,80 @@ const kbcQuestions =
             c:"RamNath Kovind",
             d:"Sushil Modi",
             correct:"Phagu Chauhan",
+        },
+        {
+            question:"White Flag is the symbol of",
+            a:"Peace",
+            b:"War",
+            c:"Truth",
+            d:"Friendship",
+            correct:"Peace",
+        },
+        {
+            question:"Which is the Highest mountain?",
+            a:"Mount Everest",
+            b:"Kanchenjunga",
+            c:"K2",
+            d:"Mount Rushmore",
+            correct:"Mount Everest",
+        },
+        {
+            question:"In the patriotic song 'Nanha Munna Rahi Hoon', which of these words will come last?",
+            a:"Jai Hind, Jai Hind",
+            b:"Desh Ka Sipahi Hoon",
+            c:"Nanha Munna Rahi Hoon",
+            d:"Bolo Mere Sang",
+            correct:"Jai Hind, Jai Hind",
+        },
+        {
+            question:"Which is the only one of these which comes in different sizes called mini, micro and nano?",
+            a:"Trucks",
+            b:"Credit cards",
+            c:"Cars",
+            d:"Sim Cards",
+            correct:"Sim Cards",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:" Which of these comes in kaali, adrakwali and masala varieties?",
+            a:"Chai",
+            b:"Chana",
+            c:"Chapati",
+            d:"Chowmein",
+            correct:"Chai",
+        },
+        {
+            question:"Which of these measures is the shortest in length?",
+            a:"Half-mile",
+            b:"Half foot",
+            c:"Half Yard",
+            d:"Half Metre",
+            correct:"Half foot",
         }],
-
+// ----------------- 3 ------------------------------
         [{
             question:"In which state Kedarnath temple is located?",
             a:"Uttar Pradesh",
@@ -33,17 +170,178 @@ const kbcQuestions =
             c:"Uttarakhand",
             d:"Jharkhand",
             correct:"Uttarakhand",
-        }],
-
+        },
+        {
+            question:"Materials through which light cannot pass are said to be.....?",
+            a:"Transparent",
+            b:"Opaque",
+            c:"Translucent",
+            d:"Obstructor",
+            correct:"Opaque",
+        },
+        {
+            question:"Google (www.google.com) is a.....",
+            a:"Search Engine",
+            b:"Number in Math",
+            c:"Directory of images",
+            d:"Chat service on the web",
+            correct:"Search Engine",
+        },
+        {
+            question:"Choose the correct verb form. The earth _____ round the sun. ",
+            a:"move",
+            b:"moves",
+            c:"moved",
+            d:"none of the above",
+            correct:"moves",
+        },
+        {
+            question:"What the main particles of an atom are? ",
+            a:"Neutron, electron, and proton",
+            b:"Proton and electron",
+            c:"Photon, electron, and neutron",
+            d:"Photon and electron",
+            correct:"Neutron, electron, and proton",
+        },
+        {
+            question:"Ampere is the unit of.....?",
+            a:"Electric Energy",
+            b:"Electric Charge",
+            c:"Electrical Current",
+            d:"Electromotive Force",
+            correct:"Electrical Current",
+        },
+        {
+            question:"What is the main component of biogas and natural gas?",
+            a:"Ethane",
+            b:"Methane",
+            c:"Propane",
+            d:"Butane",
+            correct:"Methane",
+        },
+        {
+            question:"What metal is a liquid at room temperature?",
+            a:"Sodium",
+            b:"Mercury",
+            c:"Zinc",
+            d:"Both Zinc and Sodium",
+            correct:"Mercury",
+        },
+        {
+            question:"Which gas in the atmosphere saves us from the UV rays of the sun?",
+            a:"Nitrogen",
+            b:"Ozone",
+            c:"Oxygen",
+            d:"Carbon Monoxide",
+            correct:"Ozone",
+        },
+        {
+            question:"Which planet is closest to the Earth?",
+            a:"Venus",
+            b:"Mercury",
+            c:"Mars",
+            d:"Sun",
+            correct:"Venus",
+        },
+        {
+            question:"The mother of which of these characters from the Mahabharata was a 'rakshasi' ?",
+            a:"Abhimanyu",
+            b:"Ghatotkacha",
+            c:"Sahadev",
+            d:"Dushasana",
+            correct:"Ghatotkacha",
+        }
+        ],
+// ----------------- 4 ------------------------------
         [{
-            question:"Where is the capital of Rajasthan?",
-            a:"Raipur",
-            b:"Jaipur",
-            c:"Gandhi Nagar",
-            d:"Shimla",
-            correct:"Jaipur",
+            question:" The hottest planet in the solar system?",
+            a:"Mercury",
+            b:"Venus",
+            c:"Mars",
+            d:"Jupiter",
+            correct:"Venus",
+        },
+        {
+            question:"Which of the following is used in pencils? ",
+            a:"Silicon",
+            b:"Phosophorous",
+            c:"Graphite",
+            d:"Charcoal",
+            correct:"Graphite",
+        },
+        {
+            question:" 'Dandia' is a popular dance of ___ ",
+            a:"Maharashtra",
+            b:"Gujarat",
+            c:"Tamil Nadu",
+            d:"Punjab",
+            correct:"Gujarat",
+        },
+        {
+            question:"Which of the following folk dance forms is associated with Gujarat?",
+            a:"Garba",
+            b:"Bhangra",
+            c:"Nautanki",
+            d:"Kathakal",
+            correct:"Garba",
+        },
+        {
+            question:"Of which of the following states is Nautanki, a folk dance?",
+            a:"Uttar Pradesh",
+            b:"Arunachal Pradesh",
+            c:"Meghalaya",
+            d:"Orissa",
+            correct:"Uttar Pradesh",
+        },
+        {
+            question:"The classical Indian dance of Andhra Pradesh is",
+            a:"Kathakali",
+            b:"Odissi",
+            c:"Bharatnalyam",
+            d:"Kuchipudi",
+            correct:"Kuchipudi",
+        },
+        {
+            question:"Which of the following is the lowermost layer of the Atmosphere?",
+            a:"Troposphere",
+            b:"Mesosphere",
+            c:"Thermosphere",
+            d:"Exosphere",
+            correct:"Troposphere",
+        },
+        {
+            question:"What is the name of person which controls a football match ",
+            a:"A referee",
+            b:"An Umpire",
+            c:"A spectator",
+            d:"A goalkeeper",
+            correct:"A referee",
+        },
+        {
+            question:"Mohini Attam dance form developed originally in which of the following states?",
+            a:"Karnataka",
+            b:"Orissa",
+            c:"Tamil Nadu",
+            d:"Kerala",
+            correct:"Kerala",
+        },
+        {
+            question:"Which of the following is not a part of the Internet?",
+            a:"World Wide Web",
+            b:"Email",
+            c:"CD-ROM",
+            d:"HTTP",
+            correct:"CD-ROM",
+        },
+        {
+            question:"Skin,ears,and kidneys are examples of_____ ",
+            a:"Organ Systems",
+            b:"Organs",
+            c:"Tissues",
+            d:"Cells",
+            correct:"Organs",
         }],
-
+// ----------------- 5 ------------------------------
         [{
             question:"How many district are there in bihar?",
             a:"36",
@@ -51,8 +349,98 @@ const kbcQuestions =
             c:"40",
             d:"41",
             correct:"38",
-        }],
+        },
+        {
+            question:"Tansen, a great musician of his time, was in the court of – ",
+            a:"Akabar",
+            b:"Shahjahan",
+            c:"Bahadur Shah",
+            d:"Jahangir",
+            correct:"Akbar",
+        },
+        {
+            question:"Which is a green planet in the solar system? ",
+            a:"Pluto",
+            b:"Venus",
+            c:"Uranus",
+            d:"Mars",
+            correct:"Uranus",
+        },
+        {
+            question:"When is the ' World environment Day ' celebrated",
+            a:"June 5",
+            b:"April 7",
+            c:"October 24",
+            d:"None of the above",
+            correct:"June 5",
+        },
+        {
+            question:"International Women's day is observed on",
+            a:"3rd March",
+            b:"8th March",
+            c:"15th March",
+            d:"18th March",
+            correct:"8th March",
+        },
+        {
+            question:"Which of the following is the currency of SriLanka?",
+            a:"Dinar",
+            b:"Rupee",
+            c:"Taka",
+            d:"Yen",
+            correct:"Rupee",
+        },
+        {
+            question:"Computers calculate numbers in what mode?",
+            a:"Decimal",
+            b:"Octal",
+            c:"Binary",
+            d:"None of the above",
+            correct:"Binary",
+        },
+        {
+            question:"Which is the largest planet of our solar system?",
+            a:"Saturn",
+            b:"Jupiter",
+            c:"Pluto",
+            d:"Neptune",
+            correct:"Jupiter",
+        },
+        {
+            question:"Which is the Largest continent?",
+            a:"Europe",
+            b:"America",
+            c:"Asia",
+            d:"Africa",
+            correct:"Asia",
+        },
+        {
+            question:"Which avatar of Lord Vishnu fought against a demon with the help of a vanar sena?",
+            a:"Sri Krishna",
+            b:"Vamana",
+            c:"Sri Rama",
+            d:"Narasimha",
+            correct:"Sri Rama",
+        },
+        {
+            question:"Which of these number is normally required to verify a transaction when shopping online using a debit card or credit card?",
+            a:"PAN",
+            b:"PNR",
+            c:"CVV",
+            d:"AADHAAR",
+            correct:"CVV",
+        },
+        {
+            question:"Approximately how many bones are there in the human body?",
+            a:"108",
+            b:"206",
+            c:"196",
+            d:"308",
+            correct:"206",
+        }
 
+        ],
+// ----------------- 6 ------------------------------
         [{
             question:"In which year India got independence?",
             a:"1945",
@@ -60,8 +448,97 @@ const kbcQuestions =
             c:"1948",
             d:"1951",
             correct:"1947",
-        }],
-
+        },
+        {
+            question:"In which of the following festivals are boat races a special feature?",
+            a:"Rongali Bihu",
+            b:"Onam",
+            c:"Pongal",
+            d:"Navratri",
+            correct:"Onam",
+        },
+        {
+            question:"Pongal is a popular festival of which state?",
+            a:"Kerala",
+            b:"Karnataka",
+            c:"Tamil Nadu",
+            d:"Andhra Pradesh",
+            correct:"Tamil Nadu",
+        },
+        {
+            question:"What is said to someone who is being blessed to have a long life span?",
+            a:"Vijayi Bhava",
+            b:"Aayushmaan Bhava",
+            c:"Saubhagyavatee Bhava",
+            d:"Yashasvi Bhava",
+            correct:"Aayushmaan Bhava",
+        },
+        {
+            question:"Which of these animals does not have spots on their bodies in their adulthood?",
+            a:"Giraffe",
+            b:"Leopard",
+            c:"Cheetah",
+            d:"Lion",
+            correct:"Lion",
+        },
+        {
+            question:"Samukha, Vighnaharta, and Ekadanta are other names for which Hindu god?",
+            a:"Brahma",
+            b:"Krishna",
+            c:"Rama",
+            d:"Ganesha",
+            correct:"Ganesha",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"Which of these dishes is not a single item but has two separate components?",
+            a:"Batata vada",
+            b:"Dal makhni",
+            c:"Puran poli",
+            d:"Puri bhaji",
+            correct:"Puri bhaji",
+        },
+        {
+            question:"Which of the-following is wrongly matched?",
+            a:"Qutab Minar- Delhi",
+            b:"Taj Mahal -Agra",
+            c:"Ajanta Caves -Maharashtra",
+            d:"Charminar -Lucknow",
+            correct:"Charminar -Lucknow",
+        },
+        {
+            question:"Which planet is known as the Red Planet?",
+            a:"Mars",
+            b:"Mercury",
+            c:"Jupiter",
+            d:"Earth",
+            correct:"Mars",
+        },
+        ],
+// ----------------7 ------------------------------
         [{
             question:"Which glacier is the primary source of the river Ganga?",
             a:"Pindari ",
@@ -69,8 +546,96 @@ const kbcQuestions =
             c:"Siachen",
             d:"Gangotri",
             correct:"Gangotri",
+        },
+        {
+            question:"Who wrote the national anthem of India?",
+            a:"Mahatma Gandhi",
+            b:"Jawarharlal Nehru",
+            c:"Bankim Chandra Chatterjee",
+            d:"Rabindranath Tagore",
+            correct:"Rabindranath Tagore",
+        },
+        {
+            question:"Union Budget is always presented first in ________",
+            a:"The Lok Sabha",
+            b:"The Rajya Sabha",
+            c:"Joint session of the Parliament",
+            d:"Meeting of the Union Cabinet",
+            correct:"The Lok Sabha",
+        },
+        {
+            question:"Smallest of all the continents?",
+            a:"Australia",
+            b:"Asia",
+            c:"Africa",
+            d:"America",
+            correct:"Australia",
+        },
+        {
+            question:"Haidar Ali and Tipu Sultan were rulers of which place?",
+            a:"Vijayanagar",
+            b:"Travancore",
+            c:"Mysore",
+            d:"Banganapalle",
+            correct:"Mysore",
+        },
+        {
+            question:"Which is the largest joint in the human body?",
+            a:"Elbow",
+            b:"Hip",
+            c:"Knee",
+            d:"Shoulder",
+            correct:"Knee",
+        },
+        {
+            question:"Which of these is the name of a type of women’s clothing?",
+            a:"Padmini",
+            b:"Man Bai",
+            c:"Jodha",
+            d:"Anarkali",
+            correct:"Anarkali",
+        },
+        {
+            question:"Which of these substances is composed of only two elements – hydrogen and oxygen?",
+            a:"Water",
+            b:"Salt",
+            c:"Sugar",
+            d:"Blood",
+            correct:"Water",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"P.V Sindhu excels in which one of the following sports?",
+            a:"Motorsports",
+            b:"Chess",
+            c:"Badminton",
+            d:"Tennis",
+            correct:"Badminton",
         }],
-
+// ----------------- 8 ------------------------------
         [{
             question:"Which of these terms can only be used for women?",
             a:"Dirghaayu",
@@ -78,8 +643,88 @@ const kbcQuestions =
             c:"Chiranjeevi",
             d:"Sushil",
             correct:"Suhagan",
+        },
+        {
+            question:"From which of these rivers did our country get its name 'India' ?",
+            a:"Sutlej",
+            b:"Sindhu",
+            c:"Shipra",
+            d:"Hindon",
+            correct:"Sindhu",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"The national song of India was composed by",
+            a:"Iqbal",
+            b:"Rabindranath Tagore",
+            c:"Jai Shankar Prasad",
+            d:"Bankim Chandra Chatterji",
+            correct:"Bankim Chandra Chatterji",
+        },
+        {
+            question:"The ratio of width of our National flag to its length is ",
+            a:"2:3",
+            b:"2:4",
+            c:"3:4",
+            d:"3:5",
+            correct:"2:3",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"Which bird is the universal symbol of peace?",
+            a:"Bluebird",
+            b:"Peacock",
+            c:"Dove",
+            d:"Kingfisher",
+            correct:"Dove",
         }],
-
+// ----------------- 9 ------------------------------
         [{
             question:"Bahubali festival is related to",
             a:"Islam",
@@ -87,8 +732,88 @@ const kbcQuestions =
             c:"Buddhism",
             d:"Jainism",
             correct:"Jainism",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"Who was the first Governor General of Pakistan?",
+            a:"Muhammed Ali Jinnah",
+            b:"Sir Ghulam Muhammed",
+            c:"Lord Mountbatten",
+            d:"Lord Wavell",
+            correct:"Muhammed Ali Jinnah",
         }],
-
+// ----------------- 10 ------------------------------
         [{
             question:"The Rath Yatra at Puri is celebrated in honour of which Hindu diety?",
             a:"Ram",
@@ -96,8 +821,88 @@ const kbcQuestions =
             c:"Vishnu",
             d:"Jagannath",
             correct:"Jagannath",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"Which of these Union Territories or states is landlocked? ",
+            a:"Daman and Diu",
+            b:"Andhra Pradesh",
+            c:"West Bengal",
+            d:"Telangana",
+            correct:"Telangana",
         }],
-
+// ----------------- 11 ------------------------------
         [{
             question:"Which of the following Constitutional posts is enjoyed for a fixed term?",
             a:"President",
@@ -105,8 +910,88 @@ const kbcQuestions =
             c:"Prime Minister",
             d:"Governor",
             correct:"President",
+        },
+        {
+            question:"Delhi became capital of India in__",
+            a:"1910",
+            b:"1911",
+            c:"1916",
+            d:"1917",
+            correct:"1911",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:" According to the Ramayana, which son of Vishwakarma built the bridge to Lanka? ",
+            a:"Ajakapat",
+            b:"Nahusha",
+            c:"Dvividha",
+            d:"Nala",
+            correct:"Nala",
         }],
-
+// ----------------- 12 ------------------------------
         [{
             question:"Who was the first Muslim lady to sit in the throne of Delhi?",
             a:"Noorjehan",
@@ -114,8 +999,88 @@ const kbcQuestions =
             c:"Iltumisha",
             d:"Sultana Razia Begum",
             correct:"Sultana Razia Begum",
+        },
+        {
+            question:"'Madhubani', a style of folk paintings, is popular in which of the following states in India?",
+            a:"Madhya Pradesh",
+            b:"Uttar Pradesh",
+            c:"West Bengal",
+            d:"Rajasthan",
+            correct:"Rajasthan",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"Which one of these is an avatar of Lord Vishnu who once lifted the Earth with his tusk?",
+            a:"Vamana",
+            b:"Narasimha",
+            c:"Varah",
+            d:"Airavata",
+            correct:"Varah",
         }],
-
+// ----------------- 13 ------------------------------
         [{
             question:"Who was the last ruler of the Mughal dynasty?",
             a:"Bahadur Shah Zafar",
@@ -123,17 +1088,170 @@ const kbcQuestions =
             c:"Jehangir",
             d:"Shah Jahan",
             correct:"Bahadur Shah Zafar",
-        }],
-
-        [{
-            question:"Who wrote the national anthem of India?",
+        },
+        {
+            question:"What does the ‘R’ stand for in the name of Dr B R Ambedkar?",
+            a:"Ramesh",
+            b:"Ramakant",
+            c:"Raman",
+            d:"Ramji",
+            correct:"Ramji",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"Which of the following is a recipient of the Nobel Peace Prize?",
             a:"Mahatma Gandhi",
-            b:"Jawarharlal Nehru",
-            c:"Bankim Chandra Chatterjee",
-            d:"Rabindranath Tagore",
-            correct:"Rabindranath Tagore",
+            b:"Swami Vivekananda",
+            c:"Rabindranath Tagore",
+            d:"Mother Teresa",
+            correct:"Mother Teresa",
         }],
-
+// ----------------- 14000 ------------------------------
+        [
+        {
+            question:"Right to property was removed from the list of Fundamental Rights during the rule of?",
+            a:"Indhira Gandhi Government",
+            b:"Morarji Desai Government",
+            c:"Narasimha Rao Government",
+            d:"Vajpayee Government",
+            correct:" Morarji Desai Government",
+        },
+        {
+            question:"Who was the first Indian woman to win a medal in the Olympics?",
+            a:"P.T.Usha",
+            b:"Karnam Malleshwari",
+            c:"Kunjarani Devi",
+            d:"Bachendri Pal",
+            correct:"Karnam Malleshwari",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"Who became the first Indian woman to join the International Olympic Committee?",
+            a:"Anjum Chopra",
+            b:"P T Usha",
+            c:"Karnam Malleswari",
+            d:"Nita Ambani",
+            correct:"Nita Ambani",
+        }],
+// ----------------- 15 ------------------------------
         [{
             question:"In what year was Mahatma Gandhi assassinated?",
             a:"1945",
@@ -141,6 +1259,86 @@ const kbcQuestions =
             c:"1948",
             d:"1949",
             correct:"1948",
+        },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        // {
+        //     question:" ",
+        //     a:" ",
+        //     b:" ",
+        //     c:" ",
+        //     d:" ",
+        //     correct:" ",
+        // },
+        {
+            question:"Which of these is nearest to the South Pole?",
+            a:"Arctic circle",
+            b:"Tropic of Cancer",
+            c:"Equator",
+            d:"Tropic of Capricorn",
+            correct:"Tropic of Capricorn",
         }],
 
 ];
@@ -308,7 +1506,13 @@ const resultAnalysis = (e)=>{
     if(contestantAns == correctAns)
     {
         CorrectAnswerSound();
-        quitFlag.winningAmount = document.getElementById(currentQuestIndex).innerText;
+        if(lifelineFlag.doubleDipMarker==1)
+        {
+            lifelineFlag.doubleDipMarker=0;
+        }
+        let amount = document.getElementById(currentQuestIndex).innerText;
+        amount = amount.replaceAll(",","");
+        quitFlag.winningAmount = parseInt(amount);
         document.getElementById("result").innerText = "Correct Answer";
         e.style.backgroundColor = "greenyellow";
         enableNextButton();
@@ -369,7 +1573,6 @@ const bulletTimeout = (flag,bullets,clearTimeoutId,e)=>{
             let gameAreaFullItem = resultBack + lifelineBox;
             document.getElementById("game-area-result").innerHTML = gameAreaFullItem;
             resultAnalysis(e);
-            // enableNextButton();
         }
     else
       {
@@ -417,7 +1620,7 @@ const enableLifelineButton = ()=>{
 // on click any option by the player----------
 const optionFun = ()=>{
     document.querySelectorAll(".answer-opt").forEach((e)=>{
-        // e.addEventListener("click",pickAnyOption(e));
+        
         e.addEventListener("click",()=>{
             AnswerLockSound();
             e.style.backgroundColor = "gold";
@@ -461,8 +1664,6 @@ const doubleDipHandler = ()=>{
     setTimeout(()=>{
         document.getElementById("result").innerText = "--Make Your first Guess--";
         lifelineFlag.doubleDipMarker = 1;
-        // FiftyFiftySound();
-        // doubleDipLogic();
         if(document.querySelector(".lifeline-no").innerText >0 )
             enableLifelineButton();
         optButtonEnabled();
@@ -541,7 +1742,6 @@ const flipTheQuestionHandler = ()=>{
     document.querySelector(".lifeline-no").innerText = lifelineNum;
     setTimeout(()=>{
         document.getElementById("result").innerText = "Question flipped!!";
-        // FiftyFiftySound();
         flipTheQuestionLogic();
         if(document.querySelector(".lifeline-no").innerText >0 )
             enableLifelineButton();
@@ -616,7 +1816,6 @@ const fiftyFiftyHandler = ()=>{
     disableQuitButton();
     document.querySelector(".lifeline-box").classList.remove("show-lifeline");
     document.getElementById("result").innerText = "Implementing 50-50 ...";
-    // AudiencePollImplementationSound();
     LifelineImplementationSound();
     document.querySelector(".fifty-fifty").classList.add("pointer-events-none");
     fiftyFiftyCrossMark();
@@ -625,7 +1824,6 @@ const fiftyFiftyHandler = ()=>{
     document.querySelector(".lifeline-no").innerText = lifelineNum;
     setTimeout(()=>{
         document.getElementById("result").innerText = "Two Wrong Answers Removed!!";
-        // FiftyFiftySound();
         fiftyFiftyLogic();
         if(document.querySelector(".lifeline-no").innerText >0 )
             enableLifelineButton();
@@ -770,7 +1968,6 @@ const audiencePollAddHandler = ()=>{
         let clearTimeoutId;
         audiencePollImplementationSound.pause();
         audiencePollTimeout(0,justBeforeAudiencePoll,clearTimeoutId);
-        // console.log("after timeout: ", el);
     },1500);
 }
 // audiencePollCrossMark();
@@ -801,17 +1998,9 @@ const lifelineApplied = ()=>{
             clearStopWatch();
             optButtonDisabled();
             disableNextButton();
-            // if(document.querySelector(".lifeline-no").innerText >0 )
             disableLifelineButton();
         })
     }
-    // else
-    // {
-    //     console.log("nono");
-    //     document.getElementById("lifeline-button").addEventListener("click",()=>{
-    //         document.getElementById("result").innerText = "You have NO lifeline left !!";
-    //     })
-    // }
 }
 
 function shuffleOptions(currQuestObject){
@@ -856,10 +2045,6 @@ const buildKBCquestions = ()=>{
     fiftyFifty();
     flipTheQuestion();
     doubleDip();
-    
-    // optButtonDisabled();
-    // disableNextButton();
-    
 }
 
 
@@ -917,16 +2102,14 @@ const questForSpecificPrizeMoney = ()=>{
 
 function congratulationComment(ind){
     let comment ;
-    if(ind<0)
-        comment = "Well";
-    else if(ind>=0 && ind<2)
+    if(ind<2)
         comment = "Well";
     else if(ind>=2 && ind<6)
         comment = "Well Played";
     else if(ind>=6 && ind<10)
-        comment = "You Rock";
-    else if(ind>=10 && ind<14)
         comment = "Great Game";
+    else if(ind>=10 && ind<14)
+        comment = "You Rock";
     else
         comment = "fabulous performance";
 
@@ -943,6 +2126,43 @@ function lastEndComment(money){
         com = "Sorry you could not win anything.";
 
     return com;
+}
+
+function reverseString(str) {
+
+    // empty string
+    let newString = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+        newString += str[i];
+    }
+    return newString;
+}
+function formatedMoney(money){
+    let m = money.toString();
+    let temp = "";
+    if(m.length==5)
+    {
+        for(let i=0;i<5;i++)
+        {
+            if(i==2)
+                temp+=',';
+            temp+=m[i];
+        }
+        return temp;
+    }
+    else if(m.length>5)
+    {
+        for(let i=m.length-1;i>=0;i--)
+        {
+            if(i==m.length-4 || i==m.length-6)
+                temp+=',';
+            temp+=m[i];
+        }
+        temp = reverseString(temp);
+        return temp;
+    }
+    else 
+        return m;
 }
 
 function ThemeMusic(){
@@ -966,24 +2186,22 @@ function openQuitPage(){
         let temp;
         temp = currentQuestIndex-1;
         congratulation = congratulationComment(temp);
-        if(temp<0)
-            money = "00";
-        else
-            money = document.getElementById(temp).innerText;
-
-        lastComment = lastEndComment(money);        
+        money = quitFlag.winningAmount;
+        lastComment = lastEndComment(money);    
+        money = formatedMoney(money);    
     }
     else if(quitFlag.wrongAnswerFlag)
     {
         let temp = currentQuestIndex-1;
         congratulation = congratulationComment(temp);
-        if(currentQuestIndex>9)
-            money = document.getElementById("9").innerText;
-        else if(currentQuestIndex>4)
-            money = document.getElementById("4").innerText;
+        if(quitFlag.winningAmount>=320000)
+            money = 320000;
+        else if(quitFlag.winningAmount>=10000)
+            money = 10000;
         else 
-            money = "00";        
-        lastComment =  `Your prize money comes down from ${document.getElementById(temp).innerText} to ${money} due to wrong answer.`;
+            money = 0;        
+        lastComment =  `Your prize money comes down from ${quitFlag.winningAmount} to ${money} due to wrong answer.`;
+        money = formatedMoney(money);    
     }
     else 
     {
@@ -991,6 +2209,7 @@ function openQuitPage(){
         congratulation = congratulationComment(temp);
         money = quitFlag.winningAmount;
         lastComment = lastEndComment(money);
+        money = formatedMoney(money);    
     }
     quitContent = `  
     <div class="quit-container">
@@ -1093,16 +2312,12 @@ const LifelineComesUpSound = ()=>{
 }
 
 const showLifeline = ()=>{
-    // let temp = document.querySelector(".lifeline-no").innerText;
-    // if(temp)
-    // {
         document.querySelector("#lifeline-button").addEventListener("click",()=>{
             document.querySelector(".lifeline-box").classList.toggle("show-lifeline");
             hoverLifeline();
             LifelineComesUpSound();
             
         })
-    // }
 }
 
 // adding modal on clicking sitHotSeat button
