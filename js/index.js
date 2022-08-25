@@ -92,7 +92,7 @@ const kbcQuestions =
         {
             question:"Where is the Capital of Sikkim?",
             a:"Itanagar",
-            b:"Dispur",
+            b:"Gangtok",
             c:"Jamnagar",
             d:"Sikkim",
             correct:"Gangtok",
