@@ -115,7 +115,7 @@ const kbcQuestions =
         }],
 // ----------------- 2 ------------------------------
         [{
-            question:"Who is the governor of bihar as of now in 2022?",
+            question:"Who is the governor of bihar as in 2022?",
             a:"Phagu Chauhan",
             b:"Nitesh Kumar",
             c:"RamNath Kovind",
@@ -129,6 +129,22 @@ const kbcQuestions =
             c:"Truth",
             d:"Friendship",
             correct:"Peace",
+        },
+        {
+            question:"Which of these consecutive months have 31 days?",
+            a:"January and February",
+            b:"June and July",
+            c:"July and August",
+            d:"September and October",
+            correct:"July and August",
+        },
+        {
+            question:"Which month do not have 31 days?",
+            a:"August",
+            b:"March",
+            c:"June",
+            d:"October",
+            correct:"June",
         },
         {
             question:"Which is the Highest mountain?",
@@ -352,7 +368,7 @@ const kbcQuestions =
         },
         {
             question:"Tansen, a great musician of his time, was in the court of – ",
-            a:"Akabar",
+            a:"Akbar",
             b:"Shahjahan",
             c:"Bahadur Shah",
             d:"Jahangir",
