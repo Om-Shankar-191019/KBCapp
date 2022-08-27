@@ -346,7 +346,7 @@ const kbcQuestions =
             a:"Jupitar",
             b:"Alpha Century",
             c:"Sun",
-            d:"v",
+            d:"Venus",
             correct:"Jupitar",
         },
         {
