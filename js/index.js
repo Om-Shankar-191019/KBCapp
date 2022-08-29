@@ -1,3 +1,13 @@
+
+// {
+//     question:"",
+//     a:"",
+//     b:"",
+//     c:"",
+//     d:"",
+//     correct:"",
+// },
+
 const kbcQuestions = 
     [
         // ----------------- 1 --------------
@@ -18,6 +28,22 @@ const kbcQuestions =
             correct:"Jana Gana Mana",
         },
         {
+            question:"How many squares are there in chess board?",
+            a:"49",
+            b:"64",
+            c:"56",
+            d:"64",
+            correct:"64",
+        }, 
+        {
+            question:"How many colours are there in rainbow?",
+            a:"6",
+            b:"8",
+            c:"7",
+            d:"9",
+            correct:"7",
+        },               
+        {
             question:"What do you call homemade cheese?",
             a:"Panir",
             b:"Pury",
@@ -25,6 +51,14 @@ const kbcQuestions =
             d:"Ghee",
             correct:"Panir",
         },
+        {
+            question:"Evaluate :  2+2/2 ",
+            a:"2",
+            b:"3",
+            c:"4",
+            d:"1",
+            correct:"3",
+        },        
         {
             question:"Which of these Roman numerals will have the lowest value?",
             a:"L",
@@ -123,6 +157,22 @@ const kbcQuestions =
             correct:"Phagu Chauhan",
         },
         {
+            question:"What is the chemical formula for water?",
+            a:"H2O",
+            b:"H2O2",
+            c:"HCL",
+            d:"O2",
+            correct:"H2O",
+        },
+        {
+            question:"Which among the given animals is NOT vegetarian?",
+            a:"giraffes",
+            b:"Elephants",
+            c:"pandas",
+            d:"cat",
+            correct:"cat",
+        },                
+        {
             question:"White Flag is the symbol of",
             a:"Peace",
             b:"War",
@@ -195,6 +245,14 @@ const kbcQuestions =
             d:"Jharkhand",
             correct:"Uttarakhand",
         },
+        {
+            question:"What is the chemical formula for hydrocloric acid?",
+            a:"HCL",
+            b:"H2SO4",
+            c:"NA2O3",
+            d:"NACL",
+            correct:"HCL",
+        },        
         {
             question:"Materials through which light cannot pass are said to be.....?",
             a:"Transparent",
