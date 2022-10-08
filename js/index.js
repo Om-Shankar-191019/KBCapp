@@ -22,7 +22,7 @@ const kbcQuestions =
         {
             question:"How many squares are there in chess board?",
             a:"49",
-            b:"64",
+            b:"74",
             c:"56",
             d:"64",
             correct:"64",
@@ -318,6 +318,14 @@ const kbcQuestions =
             correct:"Search Engine",
         },
         {
+            question:"Which among them is not a mobile company?",
+            a:"apple",
+            b:"samsung",
+            c:"motorola",
+            d:"mahindra",
+            correct:"mahindra",
+        },        
+        {
             question:"Choose the correct verb form. The earth _____ round the sun. ",
             a:"move",
             b:"moves",
@@ -453,7 +461,7 @@ const kbcQuestions =
             b:"Alpha Century",
             c:"Sun",
             d:"Venus",
-            correct:"Jupitar",
+            correct:"Sun",
         },
         {
             question:"Skin,ears,and kidneys are examples of_____ ",
@@ -791,7 +799,7 @@ const kbcQuestions =
             correct:"Infra-red waves",
         },
         {
-            question:"The Komark Temple is dedicated to",
+            question:"The Konark Temple is dedicated to",
             a:"Vishnu",
             b:"Shiva",
             c:"Krishna",
@@ -1055,8 +1063,8 @@ const kbcQuestions =
             a:"Madhya Pradesh",
             b:"Uttar Pradesh",
             c:"West Bengal",
-            d:"Rajasthan",
-            correct:"Rajasthan",
+            d:"Bihar",
+            correct:"Bihar",
         },
         {
             question:"The Central Rice Research Station is situated in?",
